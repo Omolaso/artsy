@@ -32,7 +32,7 @@ export const homepageSlide = [
 export const marketPlaceGrid = [
   {
     name: "PHILOMENA'22",
-    id: 1,
+    id: 6,
     price: "$3.90",
     creator: "Clearamane",
     size: "200ft",
@@ -40,7 +40,7 @@ export const marketPlaceGrid = [
   },
   {
     name: "BOOLEAN EGYPTIAN",
-    id: 2,
+    id: 7,
     price: "$5.00",
     creator: "Ali Dawa",
     size: "200ft",
@@ -48,7 +48,7 @@ export const marketPlaceGrid = [
   },
   {
     name: "BLANC",
-    id: 3,
+    id: 8,
     price: "$3.00",
     creator: "Clearamane",
     size: "200ft",
@@ -56,7 +56,7 @@ export const marketPlaceGrid = [
   },
   {
     name: "ELLIPSIA",
-    id: 4,
+    id: 9,
     price: "$2.50",
     creator: "Ali Dawa",
     size: "200ft",
@@ -64,7 +64,7 @@ export const marketPlaceGrid = [
   },
   {
     name: "THE LAW MAKERS",
-    id: 5,
+    id: 10,
     price: "$3.00",
     creator: "Clearamane",
     size: "200ft",
@@ -72,7 +72,7 @@ export const marketPlaceGrid = [
   },
   {
     name: "VEIL",
-    id: 6,
+    id: 11,
     price: "$3.90",
     creator: "Clearamane",
     size: "200ft",
@@ -80,7 +80,7 @@ export const marketPlaceGrid = [
   },
   {
     name: "ALTERNATING",
-    id: 7,
+    id: 12,
     price: "$5.00",
     creator: "Clearamane",
     size: "200ft",
@@ -88,7 +88,7 @@ export const marketPlaceGrid = [
   },
   {
     name: "ROSEMARY",
-    id: 8,
+    id: 13,
     price: "$3.00",
     creator: "Ali Dawa",
     size: "200ft",
@@ -96,7 +96,7 @@ export const marketPlaceGrid = [
   },
   {
     name: "BEVERLY",
-    id: 9,
+    id: 14,
     price: "$2.50",
     creator: "Clearamane",
     size: "200ft",
@@ -105,10 +105,10 @@ export const marketPlaceGrid = [
 ];
 
 export const auctionSide = [
-  { bidPrice: "$4000", id: 1, url: `${auctionSlide1}` },
-  { bidPrice: "$3500", id: 2, url: `${auctionSlide2}` },
-  { bidPrice: "$5000", id: 3, url: `${auctionSlide3}` },
-  { bidPrice: "$2500", id: 4, url: `${auctionSlide4}` },
+  { name: "Sunset", bidPrice: "$4000", id: 15, url: `${auctionSlide1}` },
+  { name: "Crafty", bidPrice: "$3500", id: 16, url: `${auctionSlide2}` },
+  { name: "Hanged", bidPrice: "$5000", id: 17, url: `${auctionSlide3}` },
+  { name: "Huwai", bidPrice: "$2500", id: 18, url: `${auctionSlide4}` },
 ];
 
 export const drops = [
@@ -118,7 +118,7 @@ export const drops = [
     date: "Nov 31 at 11am WAT",
     about:
       "Lorem ipsum dolor sit amet consectetur. Amet odio a aenean quis vitae tempus. Sed nunc tempus aliquet lectus ut vulputate.",
-    id: 1,
+    id: 19,
     url: `${Eyo}`,
     auction: "UPCOMING",
     inProgress: null,
@@ -129,7 +129,7 @@ export const drops = [
     date: "Aug 21 at 11am WAT",
     about:
       "Lorem ipsum dolor sit amet consectetur. Amet odio a aenean quis vitae tempus. Sed nunc tempus aliquet lectus ut vulputate.",
-    id: 2,
+    id: 20,
     url: `${Ginger}`,
     auction: "LIVE NOW",
     inProgress: true,
@@ -140,7 +140,7 @@ export const drops = [
     date: "Nov 31 at 11am WAT",
     about:
       "Lorem ipsum dolor sit amet consectetur. Amet odio a aenean quis vitae tempus. Sed nunc tempus aliquet lectus ut vulputate.",
-    id: 3,
+    id: 21,
     url: `${Sink}`,
     auction: "ENDED",
     inProgress: false,
@@ -151,7 +151,7 @@ export const drops = [
     date: "Nov 31 at 11am WAT",
     about:
       "Lorem ipsum dolor sit amet consectetur. Amet odio a aenean quis vitae tempus. Sed nunc tempus aliquet lectus ut vulputate.",
-    id: 4,
+    id: 22,
     url: `${Wrap}`,
     auction: "ENDED",
     inProgress: false,
