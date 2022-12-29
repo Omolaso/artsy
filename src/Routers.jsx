@@ -1,7 +1,9 @@
 import React, { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import { url } from "./URLs";
-import spinner from "./images/utils/spinner.svg";
+// import spinner from "./images/utils/spinner.svg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faReact } from "@fortawesome/free-brands-svg-icons";
 
 const SharedLayout = React.lazy(() => import("./pages/SharedLayout"));
 const Home = React.lazy(() => import("./pages/Home"));
@@ -17,7 +19,7 @@ const Routers = () => {
       <Suspense
         fallback={
           <div className="flex items-center justify-center min-h-screen">
-            <img src={spinner} alt="spinner" />
+            <FontAwesomeIcon icon={faReact} className="animate-spin" />
           </div>
         }
       >

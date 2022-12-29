@@ -2,12 +2,10 @@ import React from "react";
 import { url } from "../URLs";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faSearch,
-  faCartShopping,
-  faBars,
-  faClose,
-} from "@fortawesome/free-solid-svg-icons";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+import closeIcon from "../images/utils/closeIcon.svg";
+import cartIcon from "../images/utils/cartIcon.svg";
+import searchIcon from "../images/utils/searchIcon.svg";
 
 const Sidebar = ({ sidebarOpen, setSidebar }) => {
   const navigate = useNavigate();
@@ -45,42 +43,46 @@ const Sidebar = ({ sidebarOpen, setSidebar }) => {
   };
 
   return (
-    <>
+    <div className="w-full h-[10vh]">
       <main
         className={
           sidebarOpen
             ? "hidden"
-            : "flex items-center justify-between w-full h-[10vh]"
+            : "flex items-center justify-between w-full h-full px-4"
         }
       >
-        <div className="text-[18px]">
-          <FontAwesomeIcon icon={faBars} onClick={toggleSidebar} />
-        </div>
+        <button onClick={toggleSidebar}>
+          <FontAwesomeIcon icon={faBars} className="text-[20px]" />
+        </button>
         <div className="font-bold text-[24px] text-artsy-text-black">
           <button type="button" onClick={() => navigate(url.landingPage)}>
             ARTSY.
           </button>
         </div>
-        <ul className="flex-[0.15] max-sm:flex-[0.24] flex items-center justify-between w-full">
+        <ul className="flex-[0.12] max-sm:flex-[0.24] flex items-center justify-between w-full">
           <li>
             <button type="button" onClick={() => navigate(url.search)}>
-              <FontAwesomeIcon icon={faSearch} className="text-[18px]" />
+              <img
+                src={searchIcon}
+                alt="search"
+                className="w-[16px] h-[16px]"
+              />
             </button>
           </li>
           <li>
             <button type="button" onClick={() => navigate(url.cart)}>
-              <FontAwesomeIcon icon={faCartShopping} className="text-[18px]" />
+              <img src={cartIcon} alt="cart" className="w-[16px] h-[16px]" />
             </button>
           </li>
         </ul>
       </main>
 
-      <main className="flex items-start justify-start min-h-screen w-full py-10">
+      <main className="flex items-start justify-start min-h-screen w-full py-8">
         <section
           className={
             sidebarOpen
-              ? "flex flex-col justify-between h-[50vh] w-full"
-              : "hidden"
+              ? "fixed left-0 duration-500 ease-in-out flex flex-col justify-between h-[50vh] w-full px-4"
+              : "fixed left-[-100%] duration-100 ease-in-out flex flex-col justify-between h-[50vh] w-full px-4"
           }
         >
           <div className="flex flex-row items-center justify-between w-full">
@@ -92,12 +94,12 @@ const Sidebar = ({ sidebarOpen, setSidebar }) => {
 
             <div className="text-[24px]">
               <button type="button" onClick={removeSidebar}>
-                <FontAwesomeIcon icon={faClose} />
+                <img src={closeIcon} alt="closeIcon" />
               </button>
             </div>
           </div>
 
-          <ul className="flex flex-col items-start justify-between text-[24px] font-medium text-artsy-text-black h-[40vh] w-full">
+          <ul className="flex flex-col items-start justify-between text-[24px] font-medium text-artsy-text-greyBlack h-[40vh] w-full">
             <li>
               <button type="button" onClick={backHome}>
                 Home
@@ -121,7 +123,7 @@ const Sidebar = ({ sidebarOpen, setSidebar }) => {
           </ul>
         </section>
       </main>
-    </>
+    </div>
   );
 };
 

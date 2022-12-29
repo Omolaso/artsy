@@ -5,7 +5,8 @@ module.exports = {
   theme: {
     colors: {
       "artsy-text-black": "#292929",
-      "artsy-background-white": "#fffff",
+      "artsy-text-greyBlack": "#333333",
+      "artsy-background-white": "#ffffff",
       "artsy-linearGradient-blue": "#4693ED",
       "artsy-linearGradient-brown": "#79C2D2",
     },
