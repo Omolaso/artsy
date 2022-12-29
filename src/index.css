@@ -4,6 +4,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -14,9 +15,27 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 100%;
+  overflow-x: hidden;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+/*HOME PAGE ANIMATION*/
+
+.bar_content {
+  /* display: block; Important to give the content a width*/
+  width: 100%;
+  transform: translateX(100%); /* Animation start out of the screen */
+  animation: move 10s linear infinite /* Add the animation */
+    /* infinite make reapeat the animation indefinitely */;
+}
+
+/* Create the animation */
+@keyframes move {
+  to {
+    transform: translateX(-100%);
+  }
 }

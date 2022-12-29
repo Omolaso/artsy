@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import { Navbar } from "../components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
 
 const SharedLayout = () => {
   const [sidebarOpen, setSidebar] = useState(false);
@@ -21,10 +21,10 @@ const SharedLayout = () => {
     });
   }, [scrollUpBtn]);
 
-  function scrollBackUp() {
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
-  }
+  // function scrollBackUp() {
+  //   document.documentElement.scrollTop = 0;
+  //   document.body.scrollTop = 0;
+  // }
 
   return (
     <main className="relative">
@@ -40,7 +40,7 @@ const SharedLayout = () => {
         <Outlet />
       </div>
 
-      <div
+      {/* <div
         className={
           scrollUpBtn
             ? "fixed right-4 top-[85%] duration-300 ease-in-out z-50"
@@ -57,7 +57,7 @@ const SharedLayout = () => {
             className="text-[28px] md:text-[32px]"
           />
         </button>
-      </div>
+      </div> */}
     </main>
   );
 };
