@@ -73,9 +73,7 @@ const Navbar = ({ sidebarOpen, setSidebar }) => {
           <li>
             <button
               type="button"
-              className={
-                homeNavActive ? "underline font-medium" : "font-normal"
-              }
+              className={homeNavActive ? "font-normal" : "font-normal"}
               onClick={backHome}
             >
               Home
@@ -84,9 +82,7 @@ const Navbar = ({ sidebarOpen, setSidebar }) => {
           <li>
             <button
               type="button"
-              className={
-                marketNavActive ? "underline font-medium" : "font-normal"
-              }
+              className={marketNavActive ? "font-normal" : "font-normal"}
               onClick={goToMarketplace}
             >
               Marketplace
@@ -95,9 +91,7 @@ const Navbar = ({ sidebarOpen, setSidebar }) => {
           <li>
             <button
               type="button"
-              className={
-                auctionNavActive ? "underline font-medium" : "font-normal"
-              }
+              className={auctionNavActive ? "font-normal" : "font-normal"}
               onClick={goToAuction}
             >
               Auctions
@@ -106,9 +100,7 @@ const Navbar = ({ sidebarOpen, setSidebar }) => {
           <li>
             <button
               type="button"
-              className={
-                dropsNavActive ? "underline font-medium" : "font-normal"
-              }
+              className={dropsNavActive ? "font-normal" : "font-normal"}
               onClick={goToDrops}
             >
               Drop

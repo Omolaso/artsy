@@ -1,3 +1,4 @@
+import monalisa from "./images/landing-page-images/image4.png";
 import homepageSlide1 from "./images/homepage-slide/slide1.png";
 import homepageSlide2 from "./images/homepage-slide/slide2.png";
 import homepageSlide3 from "./images/homepage-slide/slide3.png";
@@ -104,7 +105,7 @@ export const marketPlaceGrid = [
   },
 ];
 
-export const auctionSide = [
+export const auctionSlide = [
   { name: "Sunset", bidPrice: "$4000", id: 15, url: `${auctionSlide1}` },
   { name: "Crafty", bidPrice: "$3500", id: 16, url: `${auctionSlide2}` },
   { name: "Hanged", bidPrice: "$5000", id: 17, url: `${auctionSlide3}` },
@@ -156,4 +157,25 @@ export const drops = [
     auction: "ENDED",
     inProgress: false,
   },
+];
+
+export const exhibitionSlide = [
+  {
+    name: "MONALISA REDEFINED IN STYLE",
+    starts: "STARTS ON : 08:00 GMT . MONDAY",
+    about:
+      "GET EXCLUSIVE VIEWING OF CONTEMPORARY ART AND CONNECT WITH INVESTORS AND AUCTIONEERS ACROSS THE WORLD BRINGING THEIR HIGHEST AND LOWEST BIDS.",
+    sn: "01",
+    id: 23,
+    url: `${monalisa}`,
+  },
+  // {
+  //   name: "Crafty",
+  //   starts: "STARTS ON : 08:00 GMT . FRIDAY",
+  //   about:
+  //     "GET EXCLUSIVE VIEWING OF CONTEMPORARY ART AND CONNECT WITH INVESTORS AND AUCTIONEERS ACROSS THE WORLD BRINGING THEIR HIGHEST AND LOWEST BIDS.",
+  //   sn: "02",
+  //   id: 24,
+  //   url: `${auctionSlide2}`,
+  // },
 ];

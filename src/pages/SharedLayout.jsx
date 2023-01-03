@@ -27,20 +27,17 @@ const SharedLayout = () => {
   // }
 
   return (
-    <main className="relative">
-      <div className="w-full">
-        <Navbar sidebarOpen={sidebarOpen} setSidebar={setSidebar} />
-      </div>
+    <>
+      <main className="relative">
+        <div className="w-full">
+          <Navbar sidebarOpen={sidebarOpen} setSidebar={setSidebar} />
+        </div>
 
-      <div
-        className={
-          sidebarOpen ? "hidden" : "block min-h-screen px-4 md:px-8 w-full"
-        }
-      >
-        <Outlet />
-      </div>
+        <div className={sidebarOpen ? "hidden" : "block min-h-screen w-full"}>
+          <Outlet />
+        </div>
 
-      {/* <div
+        {/* <div
         className={
           scrollUpBtn
             ? "fixed right-4 top-[85%] duration-300 ease-in-out z-50"
@@ -58,7 +55,8 @@ const SharedLayout = () => {
           />
         </button>
       </div> */}
-    </main>
+      </main>
+    </>
   );
 };
 
