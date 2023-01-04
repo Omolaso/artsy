@@ -1,64 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import { url } from "../URLs";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import cartIcon from "../images/utils/cartIcon.svg";
 import searchIcon from "../images/utils/searchIcon.svg";
 import notifyIcon from "../images/utils/notifyIcon.svg";
 import { Sidebar } from "../components";
 
 const Navbar = ({ sidebarOpen, setSidebar }) => {
-  const [homeNavActive, setHomeNavActive] = useState(false);
-  const [marketNavActive, setMarketNavActive] = useState(false);
-  const [auctionNavActive, setAuctionNavActive] = useState(false);
-  const [dropsNavActive, setDropsNavActive] = useState(false);
   const navigate = useNavigate();
 
   const backToLandingPage = () => {
     navigate(url.landingPage);
-    setHomeNavActive(false);
-    setMarketNavActive(false);
-    setAuctionNavActive(false);
-    setDropsNavActive(false);
   };
-
-  const backHome = () => {
-    navigate(url.home);
-    setHomeNavActive(true);
-    setMarketNavActive(false);
-    setAuctionNavActive(false);
-    setDropsNavActive(false);
-  };
-
-  const goToMarketplace = () => {
-    navigate(url.market);
-    setHomeNavActive(false);
-    setMarketNavActive(true);
-    setAuctionNavActive(false);
-    setDropsNavActive(false);
-  };
-
-  const goToAuction = () => {
-    navigate(url.auction);
-    setHomeNavActive(false);
-    setAuctionNavActive(true);
-    setMarketNavActive(false);
-    setDropsNavActive(false);
-  };
-
-  const goToDrops = () => {
-    navigate(url.drops);
-    setHomeNavActive(false);
-    setDropsNavActive(true);
-    setMarketNavActive(false);
-    setAuctionNavActive(false);
-  };
-
   const goToCart = () => {
     navigate(url.cart);
-    setHomeNavActive(false);
-    setDropsNavActive(false);
-    setMarketNavActive(false);
-    setAuctionNavActive(false);
   };
 
   return (
@@ -71,40 +26,36 @@ const Navbar = ({ sidebarOpen, setSidebar }) => {
         </div>
         <ul className="flex-[0.55] flex items-center justify-between text-[24px] max-[1000px]:text-[20px] text-artsy-text-black w-full">
           <li>
-            <button
-              type="button"
-              className={homeNavActive ? "font-normal" : "font-normal"}
-              onClick={backHome}
+            <Link
+              to={url.home}
+              className="focus:underline focus:font-medium font-normal"
             >
               Home
-            </button>
+            </Link>
           </li>
           <li>
-            <button
-              type="button"
-              className={marketNavActive ? "font-normal" : "font-normal"}
-              onClick={goToMarketplace}
+            <Link
+              to={url.market}
+              className="focus:underline focus:font-medium font-normal"
             >
               Marketplace
-            </button>
+            </Link>
           </li>
           <li>
-            <button
-              type="button"
-              className={auctionNavActive ? "font-normal" : "font-normal"}
-              onClick={goToAuction}
+            <Link
+              to={url.auction}
+              className="focus:underline focus:font-medium font-normal"
             >
-              Auctions
-            </button>
+              Auction
+            </Link>
           </li>
           <li>
-            <button
-              type="button"
-              className={dropsNavActive ? "font-normal" : "font-normal"}
-              onClick={goToDrops}
+            <Link
+              to={url.drops}
+              className="focus:underline focus:font-medium font-normal"
             >
               Drop
-            </button>
+            </Link>
           </li>
         </ul>
         <ul className="flex-[0.15] flex items-center justify-between w-full">

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { url } from "../URLs";
+import { Footer } from "../components";
 import { useNavigate } from "react-router-dom";
 import svgImage1 from "../images/landing-page-images/mobileLandingPageCarosel.svg";
 import pngImage1 from "../images/landing-page-images/image1.png";
@@ -48,10 +49,10 @@ const Home = () => {
           <div className="block md:hidden mx-auto">
             <img src={svgImage1} alt="illustration" />
           </div>
-          <div className="bar_content hidden md:flex items-baseline justify-center gap-x-3">
+          <div className="hidden md:flex items-baseline justify-center gap-x-3">
             {slides &&
               slides.map((slide) => (
-                <div key={slide.id}>
+                <div key={slide.id} className="bar_content">
                   <img src={slide.url} alt={slide.name} />
                 </div>
               ))}
@@ -246,13 +247,12 @@ const Home = () => {
                       background: `linear-gradient(0deg, rgba(0, 0, 0, 0.52), rgba(0, 0, 0, 0.52)), linear-gradient(104.57deg, rgba(0, 0, 0, 0.1) 21.03%, rgba(0, 0, 0, 0.2) 56.5%, rgba(0, 0, 0, 0.2) 93.84%), url(${item.url})`,
                       backgroundSize: "cover",
                       backgroundPosition: "center",
-                      // height: "546px",
                       width: "100%",
                     }}
                     className="min-h-[350px] md:min-h-[546px] flex item-center justify-center md:items-end md:justify-start p-8"
                   >
                     <div className="flex flex-row items-center gap-x-4 w-full max-w-[705px]">
-                      <h1 className="font-normal text-[40px] md:text-[70px]">
+                      <h1 className="hidden md:block font-normal text-[40px] md:text-[70px]">
                         {item.sn}
                       </h1>
                       <div className="flex flex-col gap-y-2 justify-start">
@@ -277,11 +277,12 @@ const Home = () => {
                   icon={faChevronLeft}
                   style={{
                     background: "rgba(255, 255, 255,0.2)",
+                    border: "1px solid rgba(255, 255, 255,0.2)",
                     boxShadow:
                       "7.77035px 7.77035px 11.6555px rgba(0, 0, 0, 0.15)",
                     backdropFilter: "blur(7.77035px)",
                   }}
-                  className="border p-4 rounded-full text-base"
+                  className="p-4 rounded-full text-base"
                 />
               </button>
               <button type="button">
@@ -289,11 +290,12 @@ const Home = () => {
                   icon={faChevronRight}
                   style={{
                     background: "rgba(255, 255, 255,0.2)",
+                    border: "1px solid rgba(255, 255, 255,0.2)",
                     boxShadow:
                       "7.77035px 7.77035px 11.6555px rgba(0, 0, 0, 0.15)",
                     backdropFilter: "blur(7.77035px)",
                   }}
-                  className="border p-4 rounded-full text-base"
+                  className="p-4 rounded-full text-base"
                 />
               </button>
             </div>
@@ -357,6 +359,8 @@ const Home = () => {
           <h1 className="font-bold text-[170px] self-end">1985</h1>
           <div className="absolute top-1/2 right-2/4 z-50">abcdf</div>
         </section>
+
+        <Footer />
       </div>
     </main>
   );

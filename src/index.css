@@ -25,17 +25,42 @@ code {
 
 /*HOME PAGE ANIMATION*/
 
-.bar_content {
-  /* display: block; Important to give the content a width*/
+/* .bar_content {
+  display: block; Important to give the content a width
   width: 100%;
-  transform: translateX(100%); /* Animation start out of the screen */
-  animation: move 10s linear infinite /* Add the animation */
-    /* infinite make reapeat the animation indefinitely */;
+  transform: translateX(100%); Animation start out of the screen
+  animation: move 10s linear infinite Add the animation
+    infinite make reapeat the animation indefinitely;
 }
 
-/* Create the animation */
+Create the animation
 @keyframes move {
   to {
     transform: translateX(-100%);
   }
+} */
+@keyframes moveLeft {
+  from {
+    transform: translateX(-50%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes moveRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.bar_content:nth-child(odd) {
+  animation: moveLeft 1s linear infinite;
+}
+.bar_content:nth-child(even) {
+  animation: moveRight 1s linear infinite;
 }
