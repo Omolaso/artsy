@@ -1,4 +1,7 @@
 import monalisa from "./images/landing-page-images/image4.png";
+import slide1 from "./images/landing-page-images/image5.svg";
+import slide2 from "./images/landing-page-images/image6.svg";
+import slide3 from "./images/landing-page-images/image7.svg";
 import homepageSlide1 from "./images/homepage-slide/slide1.png";
 import homepageSlide2 from "./images/homepage-slide/slide2.png";
 import homepageSlide3 from "./images/homepage-slide/slide3.png";
@@ -169,13 +172,19 @@ export const exhibitionSlide = [
     id: 23,
     url: `${monalisa}`,
   },
-  // {
-  //   name: "Crafty",
-  //   starts: "STARTS ON : 08:00 GMT . FRIDAY",
-  //   about:
-  //     "GET EXCLUSIVE VIEWING OF CONTEMPORARY ART AND CONNECT WITH INVESTORS AND AUCTIONEERS ACROSS THE WORLD BRINGING THEIR HIGHEST AND LOWEST BIDS.",
-  //   sn: "02",
-  //   id: 24,
-  //   url: `${auctionSlide2}`,
-  // },
+  {
+    name: "Sink",
+    starts: "STARTS ON : 10:00 GMT . FRIDAY",
+    about:
+      "GET EXCLUSIVE VIEWING OF CONTEMPORARY ART AND CONNECT WITH INVESTORS AND AUCTIONEERS ACROSS THE WORLD BRINGING THEIR HIGHEST AND LOWEST BIDS.",
+    sn: "02",
+    id: 24,
+    url: `${Sink}`,
+  },
+];
+
+export const homepageCarousel = [
+  { name: "slide1", id: 25, url: `${slide1}` },
+  { name: "slide2", id: 26, url: `${slide2}` },
+  { name: "slide3", id: 27, url: `${slide3}` },
 ];

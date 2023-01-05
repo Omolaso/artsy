@@ -6,7 +6,7 @@ import svgImage1 from "../images/landing-page-images/mobileLandingPageCarosel.sv
 import pngImage1 from "../images/landing-page-images/image1.png";
 import pngImage2 from "../images/landing-page-images/image2.png";
 import pngImage3 from "../images/landing-page-images/image3.png";
-import { homepageSlide, exhibitionSlide } from "../Products";
+import { homepageSlide, exhibitionSlide, homepageCarousel } from "../Products";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronRight,
@@ -16,21 +16,43 @@ import {
 
 const Home = () => {
   const [slides, setSlides] = useState(null);
-  const [exhibite, setExhibite] = useState(null);
-  const navigate = useNavigate();
+  const [exhibite, setExhibite] = useState(exhibitionSlide);
+  const [carousel, setCarousel] = useState(homepageCarousel);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentCarouselIndex, setCurrentCarouselIndex] = useState(2);
 
+  const navigate = useNavigate();
   const goToMarketplace = () => {
     navigate(url.market);
   };
-
   const goToAuction = () => {
     navigate(url.auction);
+  };
+
+  const nextSlide = () => {
+    setCurrentIndex(
+      currentIndex === exhibitionSlide.length - 1 ? 0 : currentIndex + 1
+    );
+  };
+  const prevSlide = () => {
+    setCurrentIndex(
+      currentIndex === 0 ? exhibitionSlide.length - 1 : currentIndex - 1
+    );
   };
 
   useEffect(() => {
     setSlides(homepageSlide);
     setExhibite(exhibitionSlide);
-  }, []);
+    setCarousel(homepageCarousel);
+
+    setTimeout(() => {
+      setCurrentCarouselIndex(
+        currentCarouselIndex === homepageCarousel.length - 1
+          ? 0
+          : currentCarouselIndex + 1
+      );
+    }, 2000);
+  }, [currentCarouselIndex]);
 
   return (
     <main className="flex items-start justify-center min-h-screen">
@@ -98,7 +120,7 @@ const Home = () => {
                     order: "2",
                   }}
                 />
-                <div className="flex-1 flex flex-col justify-between self-star text-left order-1">
+                <div className="flex-1 flex flex-col justify-between text-left order-1">
                   <h1 className="font-bold md:text-[30px] lg:text-[40px]">
                     Are We There Yet?
                   </h1>
@@ -230,7 +252,7 @@ const Home = () => {
             width: "100%",
           }}
         >
-          <div className="flex flex-col  gap-8 py-4 text-artsy-background-white w-full max-w-[1200px] mx-auto">
+          <div className="flex flex-col gap-8 py-4 text-artsy-background-white w-full max-w-[1200px] mx-auto">
             <div className="hidden md:flex flex-col items-start w-full max-w-[730px]">
               <h1 className="text-[40px] font-medium">
                 See Upcoming Auctions and Exhibitions
@@ -238,64 +260,62 @@ const Home = () => {
               <hr className="w-full max-w-[660px] mx-auto" />
             </div>
 
-            <div>
-              {exhibite &&
-                exhibite.map((item) => (
-                  <div
-                    key={item.id}
-                    style={{
-                      background: `linear-gradient(0deg, rgba(0, 0, 0, 0.52), rgba(0, 0, 0, 0.52)), linear-gradient(104.57deg, rgba(0, 0, 0, 0.1) 21.03%, rgba(0, 0, 0, 0.2) 56.5%, rgba(0, 0, 0, 0.2) 93.84%), url(${item.url})`,
-                      backgroundSize: "cover",
-                      backgroundPosition: "center",
-                      width: "100%",
-                    }}
-                    className="min-h-[350px] md:min-h-[546px] flex item-center justify-center md:items-end md:justify-start p-8"
-                  >
-                    <div className="flex flex-row items-center gap-x-4 w-full max-w-[705px]">
-                      <h1 className="hidden md:block font-normal text-[40px] md:text-[70px]">
-                        {item.sn}
-                      </h1>
-                      <div className="flex flex-col gap-y-2 justify-start">
-                        <h1 className="font-normal text-[20px] md:text-[30px]">
-                          {item.name}
-                        </h1>
-                        <p className="font-medium text-[10px] md:text-[16px]">
-                          {item.about}
-                        </p>
-                        <small className="font-normal text-[12px] md:text-[14px]">
-                          {item.starts}
-                        </small>
-                      </div>
-                    </div>
+            <div className="">
+              <div
+                style={{
+                  backgroundColor:
+                    "linear-gradient(0deg, rgba(0, 0, 0, 0.52), rgba(0, 0, 0, 0.52)), linear-gradient(104.57deg, rgba(0, 0, 0, 0.1) 21.03%, rgba(0, 0, 0, 0.2) 56.5%, rgba(0, 0, 0, 0.2) 93.84%)",
+                  backgroundImage: `url(${exhibite[currentIndex].url})`,
+                  backgroundSize: "cover",
+                  backgroundPositionY: "center",
+                  backgroundRepeat: "no-repeat",
+                  width: "100%",
+                  position: "relative",
+                }}
+                className="min-h-[350px] md:min-h-[546px] flex item-center justify-center md:items-end md:justify-start p-8"
+              >
+                <div className="flex flex-row items-center gap-x-4 w-full max-w-[705px]">
+                  <h1 className="hidden md:block font-normal text-[40px] md:text-[70px]">
+                    {exhibite[currentIndex].sn}
+                  </h1>
+                  <div className="flex flex-col gap-y-2 justify-start">
+                    <h1 className="font-normal text-[20px] md:text-[30px]">
+                      {exhibite[currentIndex].name}
+                    </h1>
+                    <p className="font-medium text-[10px] md:text-[16px]">
+                      {exhibite[currentIndex].about}
+                    </p>
+                    <small className="font-normal text-[12px] md:text-[14px]">
+                      {exhibite[currentIndex].starts}
+                    </small>
                   </div>
-                ))}
+                </div>
+              </div>
             </div>
 
             <div className="hidden md:flex items-center justify-center gap-4 self-end w-full h-[70px] max-w-[160px]">
-              <button type="button">
+              <button type="button" onClick={prevSlide}>
                 <FontAwesomeIcon
                   icon={faChevronLeft}
                   style={{
                     background: "rgba(255, 255, 255,0.2)",
-                    border: "1px solid rgba(255, 255, 255,0.2)",
                     boxShadow:
                       "7.77035px 7.77035px 11.6555px rgba(0, 0, 0, 0.15)",
                     backdropFilter: "blur(7.77035px)",
                   }}
-                  className="p-4 rounded-full text-base"
+                  className="border p-4 rounded-full text-base"
                 />
               </button>
-              <button type="button">
+              <button type="button" onClick={nextSlide}>
                 <FontAwesomeIcon
                   icon={faChevronRight}
                   style={{
                     background: "rgba(255, 255, 255,0.2)",
-                    border: "1px solid rgba(255, 255, 255,0.2)",
                     boxShadow:
                       "7.77035px 7.77035px 11.6555px rgba(0, 0, 0, 0.15)",
                     backdropFilter: "blur(7.77035px)",
                   }}
-                  className="p-4 rounded-full text-base"
+                  className="border p-4 rounded-full text-base"
                 />
               </button>
             </div>
@@ -330,12 +350,12 @@ const Home = () => {
           </div>
         </section>
 
-        <section className="flex flex-col gap-4 relative w-full bg-artsy-carousel-greyBackground min-h-[922px] px-4 md:p-8">
-          <div className="flex flex-row items-start justify-between w-full">
-            <h1 className="font-semibold text-[55px] w-full max-w-[535px]">
+        <section className="flex flex-col gap-4 relative w-full bg-artsy-carousel-greyBackground min-h-[260px] md:min-h-[922px] px-4 md:p-8">
+          <div className="flex-1 flex flex-row items-start justify-between w-full px-2">
+            <h1 className="font-semibold text-[24px] md:text-[55px] w-full max-w-[270px] md:max-w-[535px] md:px-0">
               TOP CREATORS OF THE WEEK
             </h1>
-            <div className="flex flex-row items-center gap-x-3">
+            <div className="hidden md:flex flex-row items-center gap-x-3">
               <div className="h-[265px] bg-artsy-black w-full max-w-[300px] text-artsy-black border" />
               <ul className="flex flex-col gap-y-4 font-normal text-[40px]">
                 <li>Editorials</li>
@@ -347,7 +367,7 @@ const Home = () => {
           </div>
           <p
             style={{ color: "rgba(0, 0, 0, 0.57)" }}
-            className="text-[32px] font-extralight"
+            className="flex-1 text-[13px] md:text-[32px] font-extralight text-center md:text-left"
           >
             “Everything always looked better in black and white. Everything
             always as if it were the first time; there&apos;s always more people
@@ -356,8 +376,44 @@ const Home = () => {
             with colour photography. Everything looks more exciting.”– Jack
             Lowden
           </p>
-          <h1 className="font-bold text-[170px] self-end">1985</h1>
-          <div className="absolute top-1/2 right-2/4 z-50">abcdf</div>
+          <h1 className="flex-1 font-bold text-[64px] line-through md:text-[170px] self-end">
+            1985
+          </h1>
+          <div className="flex-1">
+            {carousel && (
+              <div
+                className="home-carousel h-[260px] md:h-[836px] absolute left-[20%] md:left-[30%] top-[25%] md:top-[15%]"
+                style={{
+                  backgroundColor:
+                    "linear-gradient(0deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.04))",
+                  height: "",
+                }}
+              >
+                <img
+                  src={carousel[currentCarouselIndex].url}
+                  alt={carousel[currentCarouselIndex].name}
+                  className="h-full"
+                />
+              </div>
+            )}
+          </div>
+          {/* <div className="flex-1">
+            {carousel &&
+              carousel.map((item) => (
+                <div
+                  key={item.id}
+                  className="absolute top-[25%] md:top-[15%] right-[22%] md:right-[18%] z-50 h-[260px] md:h-[836px] w-full"
+                  // className="absolute md:top-[15%] md:left-[0%] h-[836px] z-50 w-full"
+                  style={{
+                    backgroundColor:
+                      "linear-gradient(0deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.04))",
+                    backgroundImage: `url(${item.url})`,
+                    backgroundPosition: "center",
+                    backgroundRepeat: "no-repeat",
+                  }}
+                />
+              ))}
+          </div> */}
         </section>
 
         <Footer />

@@ -64,3 +64,18 @@ Create the animation
 .bar_content:nth-child(even) {
   animation: moveRight 1s linear infinite;
 }
+
+.home-carousel{
+  animation: opaque 2s ease-in-out infinite;
+  transition: 2s ease-in-out;
+}
+
+@keyframes opaque {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+ }
+}
+  

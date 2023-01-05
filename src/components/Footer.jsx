@@ -71,6 +71,10 @@ const Footer = () => {
           </ul>
         </div>
       </div>
+
+      <div className="hidden md:block self-center font-medium text-[24] opacity-50">
+        <h1>Artsystudios © 2022. All Rights Reserved.</h1>
+      </div>
     </main>
   );
 };
