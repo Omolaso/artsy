@@ -8,6 +8,7 @@ module.exports = {
       "artsy-text-black": "#292929",
       "artsy-text-greyBlack": "#333333",
       "artsy-searchGrey": "#F4F2F2",
+      "artsy-HR-bg": "#AFB091",
       "artsy-carousel-greyBackground": "#E2E2E2",
       "artsy-background-white": "#ffffff",
       "artsy-linearGradient-blue": "#4693ED",

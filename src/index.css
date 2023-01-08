@@ -87,6 +87,7 @@ Create the animation
   width: 1em;
   border-radius: 50em;
   background: url("https://pro.fontawesome.com/releases/v5.10.0/svgs/solid/times-circle.svg");
+  cursor: pointer;
 }
 
 .filter-select{
