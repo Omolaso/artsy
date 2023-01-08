@@ -397,23 +397,6 @@ const Home = () => {
               </div>
             )}
           </div>
-          {/* <div className="flex-1">
-            {carousel &&
-              carousel.map((item) => (
-                <div
-                  key={item.id}
-                  className="absolute top-[25%] md:top-[15%] right-[22%] md:right-[18%] z-50 h-[260px] md:h-[836px] w-full"
-                  // className="absolute md:top-[15%] md:left-[0%] h-[836px] z-50 w-full"
-                  style={{
-                    backgroundColor:
-                      "linear-gradient(0deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.04))",
-                    backgroundImage: `url(${item.url})`,
-                    backgroundPosition: "center",
-                    backgroundRepeat: "no-repeat",
-                  }}
-                />
-              ))}
-          </div> */}
         </section>
 
         <Footer />
