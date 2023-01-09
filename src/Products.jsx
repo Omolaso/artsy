@@ -19,7 +19,8 @@ import Berbely from "./images/market-place/Bervely.png";
 import LawMakers from "./images/market-place/LawMakers.png";
 import Alternating from "./images/market-place/Alternating.png";
 import Veil from "./images/market-place/Veil.png";
-import Rosemary from "./images/market-place/Philomena.png";
+import Rosemary from "./images/market-place/Rosemary.png";
+import Road from "./images/market-place/Road.png";
 import Eyo from "./images/drops/Eyo.png";
 import Ginger from "./images/drops/ginger.png";
 import Sink from "./images/drops/sink.png";
@@ -196,4 +197,17 @@ export const homepageCarousel = [
   { name: "slide1", id: 25, url: `${slide1}` },
   { name: "slide2", id: 26, url: `${slide2}` },
   { name: "slide3", id: 27, url: `${slide3}` },
+];
+
+//ALL IMAGES
+export const allProducts = [
+  {
+    name: "ROAD TO EGYPT",
+    id: 28,
+    price: "$10.00",
+    creator: "Ali Dawa",
+    size: "200ft",
+    url: `${Road}`,
+    category: "Editorials",
+  },
 ];

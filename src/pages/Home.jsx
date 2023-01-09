@@ -57,7 +57,7 @@ const Home = () => {
   return (
     <main className="flex items-start justify-center min-h-screen">
       <div className=" flex flex-col gap-y-10 md:gap-y-16 min-h-screen">
-        <section className="flex flex-col items-start gap-6 text-center text-artsy-text-greyBlack min-h-[80vh] md:min-h-screen px-4 md:px-8">
+        <section className="flex flex-col items-start gap-6 text-center text-artsy-text-greyBlack px-4 md:px-8">
           <div className="mx-auto w-full max-w-[1068px]">
             <h1 className="font-medium md:font-semibold text-[32px] md:text-[65px] lg:text-[80px] w-full">
               Photography is poetry & beautiful untold stories.
@@ -71,7 +71,7 @@ const Home = () => {
           <div className="block md:hidden mx-auto">
             <img src={svgImage1} alt="illustration" />
           </div>
-          <div className="hidden md:flex items-baseline justify-center gap-x-3">
+          <div className="hidden h-full md:flex items-baseline justify-center gap-x-3">
             {slides &&
               slides.map((slide) => (
                 <div key={slide.id} className="bar_content">
@@ -81,20 +81,18 @@ const Home = () => {
           </div>
         </section>
 
-        <section className="hidden md:flex flex-col items-start gap-6 px-8 text-center text-artsy-text-greyBlack w-full min-h-screen">
+        <section className="hidden md:flex flex-col items-start gap-6 px-8 text-center text-artsy-text-greyBlack w-full">
           <h2 className="font-medium text-[48px]">Featured Products</h2>
           <div className="flex flex-col w-full">
-            <div className="flex items-center justify-center min-h-[60vh] border-t border-t-artsy-text-black border-b border-b-artsy-text-black">
+            <div className="flex items-center justify-center py-8 border-t border-t-artsy-text-black border-b border-b-artsy-text-black">
               <div className="flex flex-row items-center gap-x-8 h-full w-full">
-                <div
-                  style={{
-                    backgroundImage: `url(${pngImage1})`,
-                    backgroundSize: "cover",
-                    height: "305px",
-                    width: "100%",
-                    flex: "1",
-                  }}
-                />
+                <div className="flex-1">
+                  <img
+                    src={pngImage1}
+                    alt="Boolean Egytian"
+                    className="h-full w-full"
+                  />
+                </div>
                 <div className="flex-1 flex flex-col justify-between self-star text-left">
                   <h1 className="font-bold md:text-[30px] lg:text-[40px]">
                     The Boolean Egyptian
@@ -108,18 +106,15 @@ const Home = () => {
               </div>
             </div>
 
-            <div className="flex items-center justify-center min-h-[60vh] border-b border-b-artsy-text-black">
+            <div className="flex items-center justify-center py-8 border-b border-b-artsy-text-black">
               <div className="flex flex-row items-center gap-x-8 h-full w-full">
-                <div
-                  style={{
-                    backgroundImage: `url(${pngImage2})`,
-                    backgroundSize: "cover",
-                    height: "305px",
-                    width: "100%",
-                    flex: "1",
-                    order: "2",
-                  }}
-                />
+                <div className="flex-1 order-2">
+                  <img
+                    src={pngImage2}
+                    alt="Are We There Yet?"
+                    className="h-full w-full"
+                  />
+                </div>
                 <div className="flex-1 flex flex-col justify-between text-left order-1">
                   <h1 className="font-bold md:text-[30px] lg:text-[40px]">
                     Are We There Yet?
@@ -133,17 +128,15 @@ const Home = () => {
               </div>
             </div>
 
-            <div className="flex items-center justify-center min-h-[60vh]">
+            <div className="flex items-center justify-center py-8">
               <div className="flex flex-row items-center gap-x-8 h-full w-full">
-                <div
-                  style={{
-                    backgroundImage: `url(${pngImage3})`,
-                    backgroundSize: "cover",
-                    height: "305px",
-                    width: "100%",
-                    flex: "1",
-                  }}
-                />
+                <div className="flex-1">
+                  <img
+                    src={pngImage3}
+                    alt="Oloibiri 1997"
+                    className="h-full w-full"
+                  />
+                </div>
                 <div className="flex-1 flex flex-col justify-between text-left">
                   <h1 className="font-bold md:text-[30px] lg:text-[40px]">
                     Oloibiri 1997
@@ -245,7 +238,7 @@ const Home = () => {
         {/* FEATURED PRODUCTS MOBILE VIEW ENDS*/}
 
         <section
-          className="flex items-center justify-center px-4 md:min-h-screen min-h-[400px]"
+          className="flex items-center justify-center px-4 min-h-[400px]"
           style={{
             background:
               "linear-gradient(99.99deg, #4693ED -26.21%, #79C2D2 22.16%, rgba(192, 86, 9, 0.49) 111.62%)",

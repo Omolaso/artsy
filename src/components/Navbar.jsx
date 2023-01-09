@@ -17,7 +17,7 @@ const Navbar = ({ sidebarOpen, setSidebar }) => {
   };
 
   return (
-    <main className="flex items-center justify-center md:h-[15vh] w-full ">
+    <main className="flex items-center justify-center md:h-[12vh] w-full">
       <section className="hidden md:flex items-center justify-between w-full md:px-8">
         <div className="font-bold text-[32px] max-[1000px]:text-[28px] text-artsy-text-black">
           <button type="button" onClick={backToLandingPage}>
