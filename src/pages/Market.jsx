@@ -69,6 +69,7 @@ const Market = () => {
                 name="sort"
                 id="sort"
                 defaultValue={"Sort by"}
+                // onChange={() => console.log("hi")}
                 className="h-[60px] border border-artsy-black px-2 w-full max-w-[190px] focus:outline-none font-normal text-[18px] rounded-[8px] cursor-pointer"
               >
                 <option value="Sort by" disabled>
