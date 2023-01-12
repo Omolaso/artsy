@@ -7,36 +7,93 @@ import Slider from "@mui/material/Slider";
 import searchIcon from "../images/market-place/marketplaceSearchIcon.svg";
 import filterIcon from "../images/market-place/marketplaceFilterIcon.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import { faChevronUp, faClose } from "@fortawesome/free-solid-svg-icons";
 import { faReact } from "@fortawesome/free-brands-svg-icons";
 
 const Market = () => {
+  const [searchValue, setSearchValue] = useState("");
+  const [reload, setReload] = useState(false);
   const [marketProducts, setMarketProducts] = useState(null);
   const [loader, setLoader] = useState(true);
   const [category, setCategory] = useState(true);
   const [price, setPrice] = useState(true);
   const [artist, setArtist] = useState(true);
   const [value, setValue] = useState([2]);
+  const [sortAll, setSortAll] = useState("SORT");
+  // const [editorial, setEditorial] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
+    //loader icon display
     setTimeout(() => {
       setLoader(false);
     }, 900);
 
+    //market products
     setTimeout(() => {
       setMarketProducts(marketPlaceGrid);
     }, 1000);
-  }, []);
 
-  // MATERIAL UI
+    //SORT STATES
+    setSortAll(sortAll);
+  }, [reload]);
+
+  // FILTERS
+  //filter by search input
+  const handleSearch = () => {
+    const filtered = marketPlaceGrid.filter((product) =>
+      product.name
+        .trim()
+        .toLowerCase()
+        .includes(searchValue.trim().toLowerCase())
+    );
+
+    setMarketProducts(filtered);
+  };
+
+  const clearSearchValue = () => {
+    setSearchValue("");
+    setReload(!reload);
+  };
+
+  //filter by category
+
+  //filter by price
+  // MATERIAL UI PRICE FILTER
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
   function valuetext(value) {
     return `$${value}`;
   }
-  // MATERIAL UI
+
+  //filter by artist
+  const handleAliDawa = () => {
+    const AliDawa = "Ali Dawa";
+    const filtered = marketProducts.filter(
+      (product) => product.creator === AliDawa
+    );
+    window.scrollTo(0, 50);
+    setMarketProducts(filtered);
+  };
+
+  const handleClearamane = () => {
+    const Clearamane = "Clearamane";
+    const filtered = marketProducts.filter(
+      (product) => product.creator === Clearamane
+    );
+    window.scrollTo(0, 50);
+    setMarketProducts(filtered);
+  };
+
+  // FILTERS ENDS
+
+  // SORT
+  // const handleSort = (value) => {
+  //   if (value === sortAll) {
+  //     console.log(sortAll);
+  //   }
+  // };
 
   return (
     <>
@@ -49,12 +106,23 @@ const Market = () => {
             <div className="hidden md:flex flex-[0.3] flex-row items-center px-4 gap-4 bg-artsy-searchGrey border border-artsy-searchGrey h-[60px] rounded-[15px]">
               <img src={searchIcon} alt="search" className="h-[28px]" />
               <input
-                type="search"
+                type="text"
+                onChange={(e) => setSearchValue(e.target.value)}
+                onKeyUp={handleSearch}
+                value={searchValue}
                 name="search"
                 id="search"
                 autoComplete="off"
+                autoFocus
                 placeholder="Search"
                 className="marketplace-search bg-artsy-searchGrey focus:outline-none font-medium text-2xl max-[1000px]:text-xl w-full"
+              />
+              <FontAwesomeIcon
+                onClick={clearSearchValue}
+                icon={faClose}
+                className={
+                  searchValue ? "block text-2xl cursor-pointer" : "hidden"
+                }
               />
             </div>
 
@@ -68,16 +136,16 @@ const Market = () => {
               <select
                 name="sort"
                 id="sort"
-                defaultValue={"Sort by"}
-                // onChange={() => console.log("hi")}
+                defaultValue="Sort by"
+                onChange={() => console.log(sortAll)}
                 className="h-[60px] border border-artsy-black px-2 w-full max-w-[190px] focus:outline-none font-normal text-[18px] rounded-[8px] cursor-pointer"
               >
                 <option value="Sort by" disabled>
                   Sort by
                 </option>
-                <option value="Sort by">All</option>
+                <option value={sortAll}>All</option>
                 <option value="price">Price</option>
-                <option value="price">Name</option>
+                <option value="name">Name</option>
               </select>
             </div>
 
@@ -170,6 +238,8 @@ const Market = () => {
                           type="checkbox"
                           name="editorials"
                           id="editorials"
+                          // value={editorial}
+                          // onChange={() => setEditorial(!editorial)}
                           className="accent-artsy-searchGrey w-[26px] h-[26px] max-[1000px]:w-[20px] focus:outline-none"
                         />
                         <span className="font-normal text-[24px] max-[1000px]:text-[18px]">
@@ -330,15 +400,27 @@ const Market = () => {
                   <ul
                     className={
                       artist
-                        ? "flex flex-col gap-2 text-artsy-text-black font-normal text-[24px] max-[1000px]:text-[18px]"
+                        ? "flex flex-col justify-start gap-2 text-artsy-text-black font-normal text-[24px] max-[1000px]:text-[18px]"
                         : "hidden"
                     }
                   >
                     <li>
-                      <button type="button">Ali Dawa</button>
+                      <button
+                        type="button"
+                        className=" focus:outline-none"
+                        onClick={handleAliDawa}
+                      >
+                        Ali Dawa
+                      </button>
                     </li>
                     <li>
-                      <button type="button">Clearamane</button>
+                      <button
+                        type="button"
+                        className=" focus:outline-none"
+                        onClick={handleClearamane}
+                      >
+                        Clearamane
+                      </button>
                     </li>
                   </ul>
                 </div>
