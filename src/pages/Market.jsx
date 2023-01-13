@@ -7,23 +7,29 @@ import Slider from "@mui/material/Slider";
 import searchIcon from "../images/market-place/marketplaceSearchIcon.svg";
 import filterIcon from "../images/market-place/marketplaceFilterIcon.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronUp, faClose } from "@fortawesome/free-solid-svg-icons";
-import { faReact } from "@fortawesome/free-brands-svg-icons";
+import {
+  faChevronUp,
+  faClose,
+  faRefresh,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Market = () => {
-  const [searchValue, setSearchValue] = useState("");
-  const [reload, setReload] = useState(false);
-  const [marketProducts, setMarketProducts] = useState(null);
+  const [searchValue, setSearchValue] = useState(""); //search input
+  const [reload, setReload] = useState(false); //general reloader
+  const [sortedReload, setSortedReload] = useState(false); //sort reloader
+  const [refresher, setRefresher] = useState(false);
+  const [marketProducts, setMarketProducts] = useState([]);
   const [loader, setLoader] = useState(true);
-  const [category, setCategory] = useState(true);
-  const [price, setPrice] = useState(true);
-  const [artist, setArtist] = useState(true);
-  const [value, setValue] = useState([2]);
-  const [sortAll, setSortAll] = useState("SORT");
-  // const [editorial, setEditorial] = useState(false);
+  const [category, setCategory] = useState(true); //category accordion
+  const [price, setPrice] = useState(true); //price accordion
+  const [artist, setArtist] = useState(true); //artist accordion
+  const [value, setValue] = useState([2, 10]); //price range
+  const [editorial, setEditorial] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
+    setRefresher(true);
+
     //loader icon display
     setTimeout(() => {
       setLoader(false);
@@ -32,11 +38,22 @@ const Market = () => {
     //market products
     setTimeout(() => {
       setMarketProducts(marketPlaceGrid);
+      setRefresher(false);
     }, 1000);
-
-    //SORT STATES
-    setSortAll(sortAll);
   }, [reload]);
+
+  const handleRefresh = () => {
+    if (searchValue) {
+      setSearchValue("");
+    }
+
+    setRefresher(true);
+
+    setTimeout(() => {
+      setMarketProducts(marketPlaceGrid);
+      setRefresher(false); //set refresher to false after setting market products
+    }, 1000);
+  };
 
   // FILTERS
   //filter by search input
@@ -57,11 +74,31 @@ const Market = () => {
   };
 
   //filter by category
+  const handleEditorial = (e) => {
+    setEditorial(e.target.checked);
+    // console.log(e);
+    console.log(e.target.checked, editorial);
+    // if (editorial) {
+    //   console.log("editorial");
+    // }
+  };
 
   //filter by price
   // MATERIAL UI PRICE FILTER
   const handleChange = (event, newValue) => {
+    let priceFilter;
     setValue(newValue);
+    const diff = newValue[1] - newValue[0];
+
+    marketProducts.filter((product) => {
+      priceFilter = product.value === diff;
+      console.log(priceFilter);
+    });
+
+    // if (diff === 8) {
+    //   return;
+    // }
+    // setMarketProducts(priceFilter);
   };
   function valuetext(value) {
     return `$${value}`;
@@ -86,14 +123,31 @@ const Market = () => {
     setMarketProducts(filtered);
   };
 
-  // FILTERS ENDS
-
   // SORT
-  // const handleSort = (value) => {
-  //   if (value === sortAll) {
-  //     console.log(sortAll);
-  //   }
-  // };
+  const handleSort = (e) => {
+    let value = e.target.value;
+    if (value === "price") {
+      const sortedPrice = marketProducts.sort((a, b) => a.value - b.value);
+      setSortedReload(!sortedReload);
+      setMarketProducts(sortedPrice);
+    }
+    if (value === "name") {
+      const sortedName = marketProducts.sort((a, b) => {
+        const nameA = a.name.toUpperCase();
+        const nameB = b.name.toUpperCase();
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+        // names must be equal
+        return 0;
+      });
+      setSortedReload(!sortedReload);
+      setMarketProducts(sortedName);
+    }
+  };
 
   return (
     <>
@@ -128,22 +182,36 @@ const Market = () => {
 
             <div
               style={{ boxShadow: "4px 4px 64px rgba(0, 0, 0, 0.1)" }}
-              className="flex-1 rounded-[15px] h-[90px] hidden md:flex items-center justify-between px-4"
+              className="flex-1 hidden md:flex items-center justify-between px-4 rounded-[15px] h-[90px]"
             >
-              <p className="font-normal text-[24px] max-[1000px]:text-[20px]">
-                Explore products
-              </p>
+              <div className="flex items-center justify-between gap-2">
+                <p className="font-normal text-[24px] max-[1000px]:text-[20px]">
+                  Explore products
+                </p>
+                <button
+                  type="button"
+                  title="Refresh"
+                  className={marketProducts.length < 1 ? "block" : "hidden"}
+                  onClick={handleRefresh}
+                >
+                  <FontAwesomeIcon
+                    icon={faRefresh}
+                    className={
+                      refresher ? "align-middle animate-spin" : "align-middle"
+                    }
+                  />
+                </button>
+              </div>
               <select
                 name="sort"
                 id="sort"
-                defaultValue="Sort by"
-                onChange={() => console.log(sortAll)}
+                defaultValue="sortAll"
+                onChange={handleSort}
                 className="h-[60px] border border-artsy-black px-2 w-full max-w-[190px] focus:outline-none font-normal text-[18px] rounded-[8px] cursor-pointer"
               >
-                <option value="Sort by" disabled>
+                <option value="sortAll" disabled>
                   Sort by
                 </option>
-                <option value={sortAll}>All</option>
                 <option value="price">Price</option>
                 <option value="name">Name</option>
               </select>
@@ -238,8 +306,8 @@ const Market = () => {
                           type="checkbox"
                           name="editorials"
                           id="editorials"
-                          // value={editorial}
-                          // onChange={() => setEditorial(!editorial)}
+                          // value={e.target.checked ? editorial === true : false}
+                          onChange={handleEditorial}
                           className="accent-artsy-searchGrey w-[26px] h-[26px] max-[1000px]:w-[20px] focus:outline-none"
                         />
                         <span className="font-normal text-[24px] max-[1000px]:text-[18px]">
@@ -297,13 +365,13 @@ const Market = () => {
                     </li>
                     <li className="hidden lg:flex items-center">
                       <label
-                        htmlFor="art"
+                        htmlFor="museum"
                         className="flex items-center gap-4 cursor-pointer"
                       >
                         <input
                           type="checkbox"
-                          name="art"
-                          id="art"
+                          name="museum"
+                          id="museum"
                           className="accent-artsy-searchGrey w-[26px] h-[26px] max-[1000px]:w-[20px] focus:outline-none"
                         />
                         <span className="font-normal text-[24px] max-[1000px]:text-[18px]">
@@ -371,6 +439,7 @@ const Market = () => {
                         min={2}
                         max={10}
                         getAriaValueText={valuetext}
+                        disableSwap
                       />
                     </Box>
                   </div>
@@ -431,8 +500,8 @@ const Market = () => {
             {/* PRODUCTS */}
             <div className="flex-1 min-h-screen">
               {loader && (
-                <div className="flex items-center justify-center mt-[150px]">
-                  <FontAwesomeIcon icon={faReact} className="animate-spin" />
+                <div className="md:hidden lg:hidden flex items-center justify-center mt-[150px]">
+                  <FontAwesomeIcon icon={faRefresh} className="animate-spin" />
                 </div>
               )}
 

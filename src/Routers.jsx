@@ -2,7 +2,7 @@ import React, { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import { url } from "./URLs";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faReact } from "@fortawesome/free-brands-svg-icons";
+import { faRefresh } from "@fortawesome/free-solid-svg-icons";
 
 const SharedLayout = React.lazy(() => import("./pages/SharedLayout"));
 const Home = React.lazy(() => import("./pages/Home"));
@@ -19,7 +19,7 @@ const Routers = () => {
       <Suspense
         fallback={
           <div className="flex items-center justify-center min-h-screen">
-            <FontAwesomeIcon icon={faReact} className="animate-spin" />
+            <FontAwesomeIcon icon={faRefresh} className="animate-spin" />
           </div>
         }
       >
