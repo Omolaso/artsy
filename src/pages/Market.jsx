@@ -24,7 +24,7 @@ const Market = () => {
   const [price, setPrice] = useState(true); //price accordion
   const [artist, setArtist] = useState(true); //artist accordion
   const [value, setValue] = useState([2, 10]); //price range
-  const [editorial, setEditorial] = useState(false);
+  const [editorial, setEditorial] = useState(undefined);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -306,7 +306,7 @@ const Market = () => {
                           type="checkbox"
                           name="editorials"
                           id="editorials"
-                          // value={e.target.checked ? editorial === true : false}
+                          value={editorial}
                           onChange={handleEditorial}
                           className="accent-artsy-searchGrey w-[26px] h-[26px] max-[1000px]:w-[20px] focus:outline-none"
                         />
