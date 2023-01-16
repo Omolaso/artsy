@@ -13,6 +13,8 @@ module.exports = {
       "artsy-background-white": "#ffffff",
       "artsy-linearGradient-blue": "#4693ED",
       "artsy-linearGradient-brown": "#79C2D2",
+      "artsy-button-blue": "#3341C1",
+      "artsy-like-red": "#F44336",
     },
     fontFamily: {
       sans: ["Roboto", "sans-serif"],

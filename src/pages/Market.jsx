@@ -24,7 +24,7 @@ const Market = () => {
   const [price, setPrice] = useState(true); //price accordion
   const [artist, setArtist] = useState(true); //artist accordion
   const [value, setValue] = useState([2, 10]); //price range
-  const [editorial, setEditorial] = useState(undefined);
+  const [editorial, setEditorial] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -40,6 +40,8 @@ const Market = () => {
       setMarketProducts(marketPlaceGrid);
       setRefresher(false);
     }, 1000);
+
+    setEditorial(false);
   }, [reload]);
 
   const handleRefresh = () => {
@@ -76,11 +78,7 @@ const Market = () => {
   //filter by category
   const handleEditorial = (e) => {
     setEditorial(e.target.checked);
-    // console.log(e);
     console.log(e.target.checked, editorial);
-    // if (editorial) {
-    //   console.log("editorial");
-    // }
   };
 
   //filter by price
@@ -146,6 +144,32 @@ const Market = () => {
       });
       setSortedReload(!sortedReload);
       setMarketProducts(sortedName);
+    }
+  };
+
+  //MOBILE VIEW FILTER
+  const handleFilterOnMobile = (e) => {
+    let AliDawa = "Ali Dawa";
+    let Clearamane = "Clearamane";
+    let value = e.target.value;
+    if (value === AliDawa) {
+      const filteredByAli = marketProducts.filter((item) =>
+        item.creator.toLowerCase().includes(value.toLowerCase())
+      );
+      setSortedReload(!sortedReload);
+      setMarketProducts(filteredByAli);
+    }
+
+    if (value === Clearamane) {
+      const filteredByCleara = marketProducts.filter((item) =>
+        item.creator.toLowerCase().includes(value.toLowerCase())
+      );
+      setSortedReload(!sortedReload);
+      setMarketProducts(filteredByCleara);
+    }
+
+    if (!marketProducts) {
+      console.log(marketProducts);
     }
   };
 
@@ -217,42 +241,57 @@ const Market = () => {
               </select>
             </div>
 
-            {/* SEARCH & SORT MOBILE VIEW */}
+            {/* FILTER & SORT MOBILE VIEW */}
 
             <div
               style={{ boxShadow: "4px 4px 64px rgba(0, 0, 0, 0.1)" }}
-              className="flex-1 rounded-[15px] h-[60px] md:hidden flex items-center justify-between px-4"
+              className="flex-1 rounded-[15px] h-[60px] md:hidden flex items-center justify-between gap-x-12 px-4"
             >
-              <select
-                name="filter"
-                id="filter"
-                defaultValue={"all"}
-                className="filter-select h-[60px] px-2 w-full max-w-[90px] focus:outline-none font-normal text-[18px] rounded-[8px] cursor-pointer"
-              >
-                <option value="all" disabled>
-                  Filter
-                </option>
-                <option value="all">All</option>
-                <option value="price">Price</option>
-                <option value="price">Name</option>
-              </select>
+              <div className="flex flex-row items-center gap-2">
+                <select
+                  name="filter"
+                  id="filter"
+                  defaultValue={"all"}
+                  className="filter-select h-[60px] px-2 w-full max-w-[117px] focus:outline-none font-normal text-[16px] rounded-[8px] cursor-pointer"
+                  onChange={handleFilterOnMobile}
+                >
+                  <option value="all" disabled>
+                    Filter Items
+                  </option>
+                  <option value="Ali Dawa">Ali Dawa</option>
+                  <option value="Clearamane">Clearame</option>
+                </select>
+                <button
+                  type="button"
+                  title="Refresh"
+                  className={marketProducts.length < 1 ? "block" : "hidden"}
+                  onClick={handleRefresh}
+                >
+                  <FontAwesomeIcon
+                    icon={faRefresh}
+                    className={
+                      refresher ? "align-middle animate-spin" : "align-middle"
+                    }
+                  />
+                </button>
+              </div>
 
               <select
                 name="sort"
                 id="sort"
                 defaultValue={"sort-all"}
-                className="sort-select h-[60px] px-2 w-full max-w-[100px] focus:outline-none font-normal text-[18px] rounded-[8px] cursor-pointer"
+                className="sort-select h-[60px] px-2 w-full max-w-[90px] focus:outline-none font-normal text-[16px] rounded-[8px] cursor-pointer"
+                onChange={handleSort}
               >
                 <option value="sort-all" disabled>
-                  Sort by
+                  Sort By
                 </option>
-                <option value="sort-all">All</option>
                 <option value="price">Price</option>
-                <option value="price">Name</option>
+                <option value="name">Name</option>
               </select>
             </div>
 
-            {/* SEARCH & SORT MOBILE VIEW ENDS*/}
+            {/* FILTER & SORT MOBILE VIEW ENDS*/}
           </section>
 
           <section className="flex-1 flex items-start gap-5 justify-between min-h-screen">
