@@ -45,7 +45,7 @@ const SingleAuction = () => {
               justifyContent: "center",
             }}
           >
-            <h1 className="font-semibold text-[48px] text-artsy-black">
+            <h1 className="font-semibold text-[48px] text-artsy-linearGradient-brown">
               Current bid: {bidPrice}
             </h1>
           </div>
@@ -84,28 +84,32 @@ const SingleAuction = () => {
               Creator: {creator}
             </i>
             <ul className="flex flex-row items-center gap-4">
-              <li className="flex items-center justify-center bg-artsy-button-blue text-artsy-HR-bg h-[30px] w-[50px]">
+              <li className="font-medium text-[13px] flex items-center justify-center bg-artsy-button-blue text-artsy-HR-bg h-[30px] w-[50px]">
                 LIVE
               </li>
               <li>
                 <button type="button" onClick={() => navigate(url.auction)}>
-                  <img src={closeIcon} alt="Cancel" />
+                  <img
+                    src={closeIcon}
+                    alt="Cancel"
+                    className="h-[15px] w-[15px]"
+                  />
                 </button>
               </li>
             </ul>
           </div>
 
-          <h1 className="font-bold text-[30px] text-artsy-background-white text-center">
+          <h1 className="font-bold text-[30px] text-artsy-linearGradient-brown text-center">
             Current bid: {bidPrice}
           </h1>
 
-          <div className="flex flex-row items-center px-4 rounded-[15px] w-full max-w-[305px] h-[35px]">
+          <div className="flex flex-row items-center px-4 rounded-[15px] md:rounded-[30px] w-full max-w-[305px] md:max-w-lg h-[35px] md:h-[55px] border border-artsy-background-white">
             <input
               type="text"
-              placeholder="Join conversation"
-              className="text-[11px] placeholder:text-[11px] bg- text-artsy-text-greyBlack focus:outline-0 flex-1"
+              placeholder="Join conversation..."
+              className="auction-input px-2 text-[13px] md:text-18px placeholder:text-[13px] md:placeholder:text-[18px] text-artsy-background-white focus:outline-0 flex-1 w-full h-full"
             />
-            <button>
+            <button className="text-[16px] text-artsy-background-white">
               <FontAwesomeIcon icon={faPaperPlane} />
             </button>
           </div>

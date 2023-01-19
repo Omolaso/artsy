@@ -27,13 +27,14 @@ const Market = () => {
   const [price, setPrice] = useState(true); //price accordion
   const [artist, setArtist] = useState(true); //artist accordion
   const [value, setValue] = useState([2, 10]); //price range
-  // const [editorial, setEditorial] = useState(false);
+  const [editorial, setEditorial] = useState(true);
+  const [fashion, setFashion] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
     setRefresher(true);
 
-    //loader icon display
+    //loader icon display medium screen
     setTimeout(() => {
       setLoader(false);
     }, 900);
@@ -70,7 +71,6 @@ const Market = () => {
         .toLowerCase()
         .includes(searchValue.trim().toLowerCase())
     );
-
     setMarketProducts(filtered);
   };
 
@@ -83,26 +83,48 @@ const Market = () => {
   };
 
   //filter by category
-  // useEffect(() => {
-  //   setEditorial(false);
-  // }, []);
-
   const handleEditorial = (e) => {
-    if (e.target.checked) {
-      // setEditorial(true);
-      // console.log(true);
-      setMarketProducts([]);
+    const forEditorial = "Editorials";
+    const checked = e.target.checked;
+    setEditorial(!editorial);
+
+    if (editorial && checked) {
+      const filteredByEditorial = marketProducts.filter(
+        (products) => products.category === forEditorial
+      );
+      setMarketProducts(filteredByEditorial);
+    } else {
+      setReload(!reload);
+      setCheckAli(false);
+      setCheckCleara(false);
+      setValue([2, 10]);
+      setSearchValue("");
     }
-    // setEditorial(false);
-    // setEditorial(!editorial);
-    // console.log(e.target.checked, editorial);
   };
 
-  //filter by price
-  // MATERIAL UI PRICE FILTER
+  const handleFashion = (e) => {
+    const checked = e.target.checked;
+    const forFashion = "Fashion";
+    setFashion(!fashion);
+
+    if (fashion && checked) {
+      const filteredByFashion = marketProducts.filter(
+        (products) => products.category === forFashion
+      );
+      setMarketProducts(filteredByFashion);
+    } else {
+      setReload(!reload);
+      setCheckAli(false);
+      setCheckCleara(false);
+      setValue([2, 10]);
+      setSearchValue("");
+    }
+  };
+
+  //filter by material UI price filter
   const handleChange = (event, newValue) => {
     let priceFilter = [];
-    // let newProduct;
+    let newProduct;
     setValue(newValue);
     const firstNewValue = newValue[0];
     const secondNewValue = newValue[1];
@@ -110,23 +132,11 @@ const Market = () => {
       priceFilter.push(i);
     }
 
-    // newProduct = marketProducts.filter((product) => product.value === 3);
+    newProduct = marketProducts.filter((product) =>
+      priceFilter.includes(product.value)
+    );
 
-    for (let x = priceFilter[0]; x <= priceFilter.length; x++) {
-      // newProduct = marketProducts.filter((product) =>
-      //   product.value.includes(priceFilter[x])
-      // );
-      console.log(x);
-    }
-    //SPREAD OPERATOR
-
-    // console.log(priceFilter);
-    // console.log(newProduct);
-    // setMarketProducts(priceFilter);
-
-    // if (diff === 8) {
-    //   return;
-    // }
+    setMarketProducts(newProduct);
   };
   function valuetext(value) {
     return `$${value}`;
@@ -379,7 +389,7 @@ const Market = () => {
                           type="checkbox"
                           name="editorials"
                           id="editorials"
-                          // value={editorial}
+                          value={editorial}
                           onChange={handleEditorial}
                           className="accent-artsy-searchGrey w-[26px] h-[26px] max-[1000px]:w-[20px] focus:outline-none"
                         />
@@ -397,6 +407,8 @@ const Market = () => {
                           type="checkbox"
                           name="fashion"
                           id="fashion"
+                          value={fashion}
+                          onChange={handleFashion}
                           className="accent-artsy-searchGrey w-[26px] h-[26px] max-[1000px]:w-[20px] focus:outline-none"
                         />
                         <span className="font-normal text-[24px] max-[1000px]:text-[18px]">

@@ -115,3 +115,7 @@ Create the animation
   width: 100%;
   max-width: 410px;
 }
+
+.auction-input{
+  background: transparent;
+}
