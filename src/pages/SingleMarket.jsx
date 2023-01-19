@@ -8,8 +8,6 @@ import Stack from "@mui/material/Stack";
 import { Footer } from "../components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
-// import { faHeart } from "@fortawesome/free-regular-svg-icons";
-// import heart from "../images/utils/heart.svg";
 
 const SingleMarket = () => {
   const [description, setDescription] = useState(true);

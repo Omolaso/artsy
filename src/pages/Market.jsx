@@ -11,6 +11,7 @@ import {
   faChevronUp,
   faClose,
   faRefresh,
+  faCheckCircle,
 } from "@fortawesome/free-solid-svg-icons";
 
 const Market = () => {
@@ -18,13 +19,15 @@ const Market = () => {
   const [reload, setReload] = useState(false); //general reloader
   const [sortedReload, setSortedReload] = useState(false); //sort reloader
   const [refresher, setRefresher] = useState(false);
+  const [checkAli, setCheckAli] = useState(false);
+  const [checkCleara, setCheckCleara] = useState(false);
   const [marketProducts, setMarketProducts] = useState([]);
   const [loader, setLoader] = useState(true);
   const [category, setCategory] = useState(true); //category accordion
   const [price, setPrice] = useState(true); //price accordion
   const [artist, setArtist] = useState(true); //artist accordion
   const [value, setValue] = useState([2, 10]); //price range
-  const [editorial, setEditorial] = useState(false);
+  // const [editorial, setEditorial] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -40,8 +43,6 @@ const Market = () => {
       setMarketProducts(marketPlaceGrid);
       setRefresher(false);
     }, 1000);
-
-    setEditorial(false);
   }, [reload]);
 
   const handleRefresh = () => {
@@ -50,6 +51,9 @@ const Market = () => {
     }
 
     setRefresher(true);
+    setCheckAli(false);
+    setCheckCleara(false);
+    setValue([2, 10]);
 
     setTimeout(() => {
       setMarketProducts(marketPlaceGrid);
@@ -73,30 +77,56 @@ const Market = () => {
   const clearSearchValue = () => {
     setSearchValue("");
     setReload(!reload);
+    setCheckAli(false);
+    setCheckCleara(false);
+    setValue([2, 10]);
   };
 
   //filter by category
+  // useEffect(() => {
+  //   setEditorial(false);
+  // }, []);
+
   const handleEditorial = (e) => {
-    setEditorial(e.target.checked);
-    console.log(e.target.checked, editorial);
+    if (e.target.checked) {
+      // setEditorial(true);
+      // console.log(true);
+      setMarketProducts([]);
+    }
+    // setEditorial(false);
+    // setEditorial(!editorial);
+    // console.log(e.target.checked, editorial);
   };
 
   //filter by price
   // MATERIAL UI PRICE FILTER
   const handleChange = (event, newValue) => {
-    let priceFilter;
+    let priceFilter = [];
+    // let newProduct;
     setValue(newValue);
-    const diff = newValue[1] - newValue[0];
+    const firstNewValue = newValue[0];
+    const secondNewValue = newValue[1];
+    for (let i = firstNewValue; i <= secondNewValue; i++) {
+      priceFilter.push(i);
+    }
 
-    marketProducts.filter((product) => {
-      priceFilter = product.value === diff;
-      console.log(priceFilter);
-    });
+    // newProduct = marketProducts.filter((product) => product.value === 3);
+
+    for (let x = priceFilter[0]; x <= priceFilter.length; x++) {
+      // newProduct = marketProducts.filter((product) =>
+      //   product.value.includes(priceFilter[x])
+      // );
+      console.log(x);
+    }
+    //SPREAD OPERATOR
+
+    // console.log(priceFilter);
+    // console.log(newProduct);
+    // setMarketProducts(priceFilter);
 
     // if (diff === 8) {
     //   return;
     // }
-    // setMarketProducts(priceFilter);
   };
   function valuetext(value) {
     return `$${value}`;
@@ -110,6 +140,8 @@ const Market = () => {
     );
     window.scrollTo(0, 50);
     setMarketProducts(filtered);
+    setCheckAli(true);
+    setCheckCleara(false);
   };
 
   const handleClearamane = () => {
@@ -119,6 +151,8 @@ const Market = () => {
     );
     window.scrollTo(0, 50);
     setMarketProducts(filtered);
+    setCheckAli(false);
+    setCheckCleara(true);
   };
 
   // SORT
@@ -345,7 +379,7 @@ const Market = () => {
                           type="checkbox"
                           name="editorials"
                           id="editorials"
-                          value={editorial}
+                          // value={editorial}
                           onChange={handleEditorial}
                           className="accent-artsy-searchGrey w-[26px] h-[26px] max-[1000px]:w-[20px] focus:outline-none"
                         />
@@ -473,7 +507,7 @@ const Market = () => {
                         getAriaLabel={() => "Price range"}
                         value={value}
                         onChange={handleChange}
-                        valueLabelDisplay="auto"
+                        valueLabelDisplay="on"
                         sx={{ color: "black" }}
                         min={2}
                         max={10}
@@ -508,11 +542,11 @@ const Market = () => {
                   <ul
                     className={
                       artist
-                        ? "flex flex-col justify-start gap-2 text-artsy-text-black font-normal text-[24px] max-[1000px]:text-[18px]"
+                        ? "flex flex-col justify-start gap-2 text-artsy-text-black font-normal text-[24px] max-[1000px]:text-[18px] w-full"
                         : "hidden"
                     }
                   >
-                    <li>
+                    <li className="flex items-center justify-between">
                       <button
                         type="button"
                         className=" focus:outline-none"
@@ -520,8 +554,12 @@ const Market = () => {
                       >
                         Ali Dawa
                       </button>
+                      <FontAwesomeIcon
+                        icon={faCheckCircle}
+                        className={checkAli ? "block" : "hidden"}
+                      />
                     </li>
-                    <li>
+                    <li className="flex items-center justify-between">
                       <button
                         type="button"
                         className=" focus:outline-none"
@@ -529,6 +567,10 @@ const Market = () => {
                       >
                         Clearamane
                       </button>
+                      <FontAwesomeIcon
+                        icon={faCheckCircle}
+                        className={checkCleara ? "block" : "hidden"}
+                      />
                     </li>
                   </ul>
                 </div>

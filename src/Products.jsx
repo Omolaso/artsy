@@ -10,7 +10,8 @@ import homepageSlide5 from "./images/homepage-slide/slide5.png";
 import auctionSlide1 from "./images/auction-slide/slide1.png";
 import auctionSlide2 from "./images/auction-slide/slide2.png";
 import auctionSlide3 from "./images/auction-slide/slide3.png";
-import auctionSlide4 from "./images/auction-slide/slide4.png";
+import outBox from "./images/auction-slide/outBox.png";
+import fallApart from "./images/auction-slide/fallApart.png";
 import Philomena from "./images/market-place/Philomena.png";
 import Egyptian from "./images/market-place/Egyptian.png";
 import Blank from "./images/market-place/Blank.png";
@@ -25,6 +26,7 @@ import Eyo from "./images/drops/Eyo.png";
 import Ginger from "./images/drops/ginger.png";
 import Sink from "./images/drops/sink.png";
 import Wrap from "./images/drops/wrap.png";
+import heart from "./images/utils/heart.svg";
 
 export const homepageSlide = [
   { name: "Young Guy", id: 1, url: `${homepageSlide1}` },
@@ -155,10 +157,79 @@ export const marketPlaceGrid = [
 ];
 
 export const auctionSlide = [
-  { name: "Sunset", bidPrice: "$4000", id: 15, url: `${auctionSlide1}` },
-  { name: "Crafty", bidPrice: "$3500", id: 16, url: `${auctionSlide2}` },
-  { name: "Hanged", bidPrice: "$5000", id: 17, url: `${auctionSlide3}` },
-  { name: "Huwai", bidPrice: "$2500", id: 18, url: `${auctionSlide4}` },
+  {
+    name: "Sunset",
+    bidPrice: "$4000",
+    id: 15,
+    imgUrl: `${auctionSlide1}`,
+    creator: "Stormy Raily",
+  },
+  {
+    name: "Crafty",
+    bidPrice: "$3500",
+    id: 16,
+    imgUrl: `${auctionSlide2}`,
+    creator: "Declar Grey",
+  },
+  {
+    name: "Hanged",
+    bidPrice: "$5000",
+    id: 17,
+    imgUrl: `${auctionSlide3}`,
+    creator: "Ali Coman",
+  },
+  {
+    name: "Eyo",
+    bidPrice: "$2500",
+    id: 18,
+    imgUrl: `${Eyo}`,
+    creator: "Stormy Raily",
+  },
+  {
+    name: "Falling apart",
+    id: 31,
+    imgUrl: `${fallApart}`,
+    creator: "Jacob Banks",
+    date: "12.08.2022",
+    bidPrice: "$5600",
+    highestBid: "$9000",
+    popular: true,
+  },
+  {
+    name: "Out of the box",
+    id: 30,
+    imgUrl: `${outBox}`,
+    creator: "Dan Murray",
+    date: "12.08.2022",
+    bidPrice: "$6500",
+    highestBid: "$10000",
+    popular: true,
+  },
+];
+
+export const popularCreators = [
+  {
+    name: "Out of the box",
+    id: 30,
+    imgUrl: `${outBox}`,
+    url2: `${heart}`,
+    creator: "Dan Murray",
+    date: "12.08.2022",
+    bidPrice: "$6500",
+    highestBid: "$10000",
+    popular: true,
+  },
+  {
+    name: "Falling apart",
+    id: 31,
+    imgUrl: `${fallApart}`,
+    url2: `${heart}`,
+    creator: "Jacob Banks",
+    date: "12.08.2022",
+    bidPrice: "$5600",
+    highestBid: "$9000",
+    popular: true,
+  },
 ];
 
 export const drops = [

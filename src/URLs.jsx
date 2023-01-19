@@ -4,6 +4,7 @@ export const url = {
   market: "/marketplace",
   singleMarket: "/marketplace/:Id",
   auction: "/auction",
+  singleAuction: "/auction/:auctionId",
   drops: "/drops",
   search: "/search",
   cart: "/yourcart",
