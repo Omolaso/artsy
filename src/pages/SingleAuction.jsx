@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import uuid from "react-uuid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { useParams, useNavigate } from "react-router-dom";
@@ -7,13 +9,38 @@ import { url } from "../URLs";
 import closeIcon from "../images/utils/auctionCloseIcon.svg";
 
 const SingleAuction = () => {
+  const [bid, setBid] = useState(""); //bid post request
+  const [getBid, setGetBid] = useState([]); //bid get request
+
   const { auctionId } = useParams();
   const navigate = useNavigate();
   const singleAuction = auctionSlide.find(
     (auction) => auction.id === Number(auctionId)
   );
-  // console.log(singleAuction);
   const { imgUrl, bidPrice, creator } = singleAuction;
+
+  //post request for bid
+  const placeBid = () => {
+    if (bid.length > 0) {
+      axios.post("http://localhost:3000/posts", { title: bid, id: uuid() });
+    } else {
+      alert("Can not place empty bid");
+    }
+
+    setBid("");
+  };
+
+  //get request for bid
+  const getPlacedBid = () => {
+    axios.get("http://localhost:3000/posts").then((res) => {
+      // console.log(res.data);
+      setGetBid(res.data);
+    });
+  };
+
+  useEffect(() => {
+    getPlacedBid();
+  }, [getBid]);
 
   return (
     <main className="flex items-center justify-center">
@@ -50,7 +77,14 @@ const SingleAuction = () => {
             </h1>
           </div>
           <div className="flex flex-col p-4">
-            <div className="flex-1">POSTS</div>
+            <div className="flex-1">
+              {getBid &&
+                getBid.map((bids) => (
+                  <div className="" key={bids.id}>
+                    <p className="font-medium text-[25px]">{bids.title}</p>
+                  </div>
+                ))}
+            </div>
             <div className="flex flex-col gap-3">
               <i className="font-medium text-[20px] text-artsy-HR-bg">
                 Creator: {creator}
@@ -58,10 +92,12 @@ const SingleAuction = () => {
               <div className="styled-border flex flex-row items-center p-4 rounded-[25px]">
                 <input
                   type="text"
+                  value={bid}
+                  onChange={(e) => setBid(e.target.value)}
                   placeholder="Place a bid"
                   className="text-[22px] placeholder:text-[22px] text-artsy-text-greyBlack focus:outline-0 flex-1"
                 />
-                <button>
+                <button onClick={placeBid}>
                   <FontAwesomeIcon icon={faPaperPlane} />
                 </button>
               </div>
@@ -107,7 +143,7 @@ const SingleAuction = () => {
             <input
               type="text"
               placeholder="Join conversation..."
-              className="auction-input px-2 text-[13px] md:text-18px placeholder:text-[13px] md:placeholder:text-[18px] text-artsy-background-white focus:outline-0 flex-1 w-full h-full"
+              className="auction-input px-2 text-[13px] md:text-18px placeholder:text-[13px] md:placeholder:text-[18px] text-artsy-linearGradient-brown focus:outline-0 flex-1 w-full h-full"
             />
             <button className="text-[16px] text-artsy-background-white">
               <FontAwesomeIcon icon={faPaperPlane} />
