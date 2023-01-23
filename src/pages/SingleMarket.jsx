@@ -1,10 +1,6 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { marketPlaceGrid } from "../Products";
-import Breadcrumbs from "@mui/material/Breadcrumbs";
-import Typography from "@mui/material/Typography";
-import Link from "@mui/material/Link";
-import Stack from "@mui/material/Stack";
 import { Footer } from "../components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
@@ -13,6 +9,7 @@ const SingleMarket = () => {
   const [description, setDescription] = useState(true);
   const [like, setLike] = useState(false);
   const { Id } = useParams();
+  const navigate = useNavigate();
   const singleProduct = marketPlaceGrid.find(
     (product) => product.id === Number(Id)
   );
@@ -21,42 +18,20 @@ const SingleMarket = () => {
   const { nameLowercase, url, madeIn, totalViews, creator, category, price } =
     singleProduct;
 
-  //BREADCRUMB
-
-  const breadcrumbs = [
-    <Link
-      underline="hover"
-      key="2"
-      color="inherit"
-      href="/marketplace"
-      className="font-medium md:text-[24px] text-[18px]"
-    >
-      Marketplace
-    </Link>,
-    <Typography
-      key="3"
-      variant="p"
-      color="text.primary"
-      className="font-medium md:text-[22px] text-[18px]"
-    >
-      {nameLowercase}
-    </Typography>,
-  ];
-
   return (
     <>
       <main className="my-[10px] md:my-[15px] px-4 md:px-8">
         <div className="flex flex-col gap-y-0 md:gap-y-10">
-          <section className="md:self-start self-center mb-3">
-            <Stack spacing={2}>
-              <Breadcrumbs
-                separator="›"
-                aria-label="breadcrumb"
-                className="font-medium md:text-[24px] text-[18px]"
-              >
-                {breadcrumbs}
-              </Breadcrumbs>
-            </Stack>
+          <section className="md:self-start self-center mb-3 font-medium md:text-[24px] text-[18px] flex items-center gap-x-2">
+            <button
+              type="button"
+              className=" text-artsy-HR-bg hover:underline"
+              onClick={() => navigate("/marketplace")}
+            >
+              Marketplace
+            </button>
+            <span>›</span>
+            <h2 className=" cursor-text">{nameLowercase}</h2>
           </section>
 
           <section className="flex md:flex-row flex-col md:items-start items-center justify-between border-t md:border border-artsy-text-greyBlack min-h-[800px] lg:min-h-[1020px] w-full">

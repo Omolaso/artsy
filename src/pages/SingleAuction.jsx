@@ -11,6 +11,7 @@ import closeIcon from "../images/utils/auctionCloseIcon.svg";
 const SingleAuction = () => {
   const [bid, setBid] = useState(""); //bid post request
   const [getBid, setGetBid] = useState([]); //bid get request
+  const [reload, setReload] = useState(false); //trigger
 
   const { auctionId } = useParams();
   const navigate = useNavigate();
@@ -35,12 +36,13 @@ const SingleAuction = () => {
     axios.get("http://localhost:3000/posts").then((res) => {
       // console.log(res.data);
       setGetBid(res.data);
+      setReload(!reload);
     });
   };
 
   useEffect(() => {
     getPlacedBid();
-  }, [getBid]);
+  }, [reload]);
 
   return (
     <main className="flex items-center justify-center">
@@ -57,16 +59,16 @@ const SingleAuction = () => {
           <h2 className=" cursor-text">Live Bid</h2>
         </section>
 
-        <section className="hidden lg:grid grid-cols-2 border min-h-[75vh]">
+        <section className="hidden lg:grid grid-cols-2 border h-[75vh]">
           <div
-            className="px-4 md:px-8"
+            className="px-4 md:px-8 fixed left-0"
             style={{
               backgroundImage: `url(${imgUrl})`,
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center",
               backgroundSize: "cover",
-              height: "100%",
-              width: "100%",
+              height: "75%",
+              width: "50%",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -76,11 +78,14 @@ const SingleAuction = () => {
               Current bid: {bidPrice}
             </h1>
           </div>
-          <div className="flex flex-col p-4">
-            <div className="flex-1">
+          <div className="flex flex-col p-4 fixed right-0 w-[50%] h-[75vh]">
+            <div
+              id="div"
+              className="post-msg flex-1 h-[65vh] overflow-y-scroll"
+            >
               {getBid &&
                 getBid.map((bids) => (
-                  <div className="" key={bids.id}>
+                  <div className="mb-2" key={bids.id}>
                     <p className="font-medium text-[25px]">{bids.title}</p>
                   </div>
                 ))}
@@ -89,10 +94,11 @@ const SingleAuction = () => {
               <i className="font-medium text-[20px] text-artsy-HR-bg">
                 Creator: {creator}
               </i>
-              <div className="styled-border flex flex-row items-center p-4 rounded-[25px]">
+              <div className="styled-bordr w-full max-w-md border border-artsy-linearGradient-brown flex flex-row items-center p-4 rounded-[25px]">
                 <input
                   type="text"
                   value={bid}
+                  onKeyUp={(e) => (e.key === "Enter" ? placeBid() : null)}
                   onChange={(e) => setBid(e.target.value)}
                   placeholder="Place a bid"
                   className="text-[22px] placeholder:text-[22px] text-artsy-text-greyBlack focus:outline-0 flex-1"
@@ -139,21 +145,38 @@ const SingleAuction = () => {
             Current bid: {bidPrice}
           </h1>
 
-          <div className="flex flex-row items-center px-4 rounded-[15px] md:rounded-[30px] w-full max-w-[305px] md:max-w-lg h-[35px] md:h-[55px] border border-artsy-background-white">
-            <input
-              type="text"
-              placeholder="Join conversation..."
-              className="auction-input px-2 text-[13px] md:text-18px placeholder:text-[13px] md:placeholder:text-[18px] text-artsy-linearGradient-brown focus:outline-0 flex-1 w-full h-full"
-            />
-            <button className="text-[16px] text-artsy-background-white">
-              <FontAwesomeIcon icon={faPaperPlane} />
-            </button>
+          <div className="flex flex-col gap-4">
+            <div className="text-artsy-background-white min-h-[5vh] max-h-[20vh] overflow-auto">
+              {getBid &&
+                getBid.map((bids) => (
+                  <div className="mb-2" key={bids.id}>
+                    <p className="font-normal text-[13px]">{bids.title}</p>
+                  </div>
+                ))}
+            </div>
+
+            <div className="flex flex-row items-center px-4 rounded-[15px] md:rounded-[30px] w-full md:max-w-lg h-[35px] md:h-[55px] border border-artsy-background-white">
+              <input
+                type="text"
+                placeholder="Join conversation..."
+                value={bid}
+                onKeyUp={(e) => (e.key === "Enter" ? placeBid() : null)}
+                onChange={(e) => setBid(e.target.value)}
+                className="auction-input px-2 text-[13px] md:text-18px placeholder:text-[13px] md:placeholder:text-[18px] text-artsy-linearGradient-brown focus:outline-0 flex-1 w-full h-full"
+              />
+              <button
+                className="text-[16px] text-artsy-background-white"
+                onClick={placeBid}
+              >
+                <FontAwesomeIcon icon={faPaperPlane} />
+              </button>
+            </div>
           </div>
         </section>
 
         {/* AUCTION MOBILE VIEW ENDS */}
 
-        <section className="hidden lg:mb-4 md:flex flex-row items-center gap-4 w-full max-w-[500px] min-h-[5vh] px-4 md:px-8">
+        <section className="hidden lg:mb-2 md:flex flex-row items-center gap-4 w-full max-w-[500px] min-h-[5vh] px-4 md:px-8">
           <h1 className="text-[36px] font-medium">See upcoming drops</h1>
           <button type="button" onClick={() => navigate(url.drops)}>
             <FontAwesomeIcon

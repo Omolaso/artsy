@@ -90,32 +90,34 @@ Create the animation
   cursor: pointer;
 } */
 
-.filter-select{
-  background: url("data:image/svg+xml,<svg height='10px' width='10px' viewBox='0 0 16 16' fill='%23000000' xmlns='http://www.w3.org/2000/svg'><path d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/></svg>") no-repeat;
+.filter-select {
+  background: url("data:image/svg+xml,<svg height='10px' width='10px' viewBox='0 0 16 16' fill='%23000000' xmlns='http://www.w3.org/2000/svg'><path d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/></svg>")
+    no-repeat;
   background-position: calc(100% - 1rem) center !important;
-  -moz-appearance:none !important;
-  -webkit-appearance: none !important; 
+  -moz-appearance: none !important;
+  -webkit-appearance: none !important;
   appearance: none !important;
   padding-right: 2rem !important;
 }
-.sort-select{
-  background: url("data:image/svg+xml,<svg height='10px' width='10px' viewBox='0 0 16 16' fill='%23000000' xmlns='http://www.w3.org/2000/svg'><path d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/></svg>") no-repeat;
+.sort-select {
+  background: url("data:image/svg+xml,<svg height='10px' width='10px' viewBox='0 0 16 16' fill='%23000000' xmlns='http://www.w3.org/2000/svg'><path d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/></svg>")
+    no-repeat;
   background-position: calc(100% - 1rem) center !important;
-  -moz-appearance:none !important;
-  -webkit-appearance: none !important; 
+  -moz-appearance: none !important;
+  -webkit-appearance: none !important;
   appearance: none !important;
   padding-right: 2rem !important;
 }
 
 /*AUCTION PAGE STYLED BORDER*/
-.styled-border{
-  border-image: linear-gradient(to left, #78A3AD, #C05609) 30;
+.styled-border {
+  border-image: linear-gradient(to left, #78a3ad, #c05609) 30;
   border-image-slice: 30%;
-  border-width: 2px ;
+  border-width: 2px;
   width: 100%;
   max-width: 410px;
 }
 
-.auction-input{
+.auction-input {
   background: transparent;
 }
