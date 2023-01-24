@@ -13,6 +13,8 @@ module.exports = {
       "artsy-background-white": "#ffffff",
       "artsy-linearGradient-blue": "#4693ED",
       "artsy-linearGradient-brown": "#79C2D2",
+      "artsy-dropGreen": "#3EA03B",
+      "artsy-dropEnded": "#999EA5",
       "artsy-button-blue": "#3341C1",
       "artsy-like-red": "#F44336",
     },

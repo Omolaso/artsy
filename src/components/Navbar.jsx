@@ -78,7 +78,7 @@ const Navbar = ({ sidebarOpen, setSidebar }) => {
             </button>
           </li>
           <li>
-            <button type="button">
+            <button type="button" onClick={() => navigate(url.notify)}>
               <img
                 src={notifyIcon}
                 alt="notification"

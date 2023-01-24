@@ -8,4 +8,5 @@ export const url = {
   drops: "/drops",
   search: "/search",
   cart: "/yourcart",
+  notify: "/notifications",
 };

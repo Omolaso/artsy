@@ -242,7 +242,7 @@ export const drops = [
     id: 19,
     url: `${Eyo}`,
     auction: "UPCOMING",
-    inProgress: null,
+    inProgress: "upcoming",
   },
   {
     name: "Ginger Suburbs",

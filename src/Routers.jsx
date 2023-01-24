@@ -13,6 +13,7 @@ const SingleAuction = React.lazy(() => import("./pages/SingleAuction"));
 const Drops = React.lazy(() => import("./pages/Drops"));
 const Search = React.lazy(() => import("./pages/Search"));
 const Cart = React.lazy(() => import("./pages/Cart"));
+const Notifications = React.lazy(() => import("./pages/Notification"));
 
 const Routers = () => {
   return (
@@ -33,6 +34,7 @@ const Routers = () => {
             <Route path={url.auction} element={<Auction />} />
             <Route path={url.drops} element={<Drops />} />
             <Route path={url.cart} element={<Cart />} />
+            <Route path={url.notify} element={<Notifications />} />
           </Route>
 
           <Route path={url.singleAuction} element={<SingleAuction />} />
