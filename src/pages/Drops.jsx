@@ -24,14 +24,14 @@ const Drops = () => {
             <button
               type="button"
               onClick={() => navigate("/notifications")}
-              className="max-w-[260px] md:max-w-[420px] w-full rounded-[6px] md:rounded-[10px] font-medium text-[22px] md:text-[36px] border min-h-[50px] md:min-h-[86px]"
+              className="max-w-[260px] md:max-w-[420px] w-full rounded-[6px] hover:bg-artsy-text-greyBlack hover:text-artsy-searchGrey ease-in-out duration-500 md:rounded-[10px] font-medium text-[22px] md:text-[36px] border min-h-[50px] md:min-h-[86px]"
             >
               Notify me
             </button>
           </div>
         </section>
 
-        <section className="flex flex-col gap-10">
+        <section className="flex flex-col gap-16 md:gap-20">
           {dropItems &&
             dropItems.map((item) => (
               <section
@@ -39,7 +39,7 @@ const Drops = () => {
                 className="flex flex-col md:flex-row items-center gap-5"
               >
                 <div
-                  className="flex-1 flex flex-col justify-between md:items-end md:justify-end min-h-[225px] md:min-h-[450px] rounded-[10px] p-4 w-full border"
+                  className="flex-1 flex flex-col justify-between md:items-end md:justify-end min-h-[225px] md:min-h-[450px] rounded-[10px] p-4 w-full"
                   style={{
                     backgroundImage: `url(${item.url})`,
                     backgroundPosition: "center",
@@ -47,6 +47,7 @@ const Drops = () => {
                     backgroundRepeat: "no-repeat",
                   }}
                 >
+                  {/*status mobile view */}
                   <div className="flex items-end justify-end w-full md:hidden">
                     <button
                       disabled="disabled"
@@ -62,6 +63,7 @@ const Drops = () => {
                       {item.auction}
                     </button>
                   </div>
+                  {/*status mobile view ends */}
 
                   <div
                     className="flex items-center justify-center border border-[#ffff] mb-4 md:mb-8 w-full min-h-[72px] md:min-h-[130px] max-w-[370px] md:max-w-[570px]"
@@ -77,7 +79,8 @@ const Drops = () => {
                   </div>
                 </div>
 
-                <div className="flex-1 flex flex-col items-start justify-between min-h-[225px] md:min-h-[450px]">
+                <div className="flex-1 flex flex-col items-start justify-between w-full md:justify-around min-h-[180px] md:min-h-[450px]">
+                  {/*status desktop view */}
                   <div className="hidden md:flex items-start justify-start w-full">
                     <button
                       disabled="disabled"
@@ -93,6 +96,22 @@ const Drops = () => {
                       {item.auction}
                     </button>
                   </div>
+                  {/*status desktop view ends */}
+                  <p className="font-normal text-[16px] md:text-[20px]">
+                    {item.date}
+                  </p>
+                  <h1 className="font-medium text-[24px] md:text-[36px]">
+                    {item.name}
+                  </h1>
+                  <p className="font-normal text-[16px] md:text-[20px] w-full max-w-[335px] md:max-w-[430px]">
+                    {item.about}
+                  </p>
+                  <h1 className="flex items-center font-medium text-[20px] md:text-[24px]">
+                    <span className="">Creator:</span>
+                    <span className="text-artsy-linearGradient-blue ml-2 align-end">
+                      {item.creator}
+                    </span>
+                  </h1>
                 </div>
               </section>
             ))}
