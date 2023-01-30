@@ -1,6 +1,6 @@
 import React from "react";
 import { url } from "../URLs";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import cartIcon from "../images/utils/cartIcon.svg";
 import searchIcon from "../images/utils/searchIcon.svg";
 import notifyIcon from "../images/utils/notifyIcon.svg";
@@ -8,6 +8,7 @@ import { Sidebar } from "../components";
 
 const Navbar = ({ sidebarOpen, setSidebar }) => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   const backToLandingPage = () => {
     navigate(url.landingPage);
@@ -28,7 +29,9 @@ const Navbar = ({ sidebarOpen, setSidebar }) => {
           <li>
             <Link
               to={url.home}
-              className="focus:underline focus:font-medium font-normal"
+              className={
+                pathname === url.home ? "underline font-medium" : "font-normal"
+              }
             >
               Home
             </Link>
@@ -36,7 +39,11 @@ const Navbar = ({ sidebarOpen, setSidebar }) => {
           <li>
             <Link
               to={url.market}
-              className="focus:underline focus:font-medium font-normal"
+              className={
+                pathname === url.market
+                  ? "underline font-medium"
+                  : "font-normal"
+              }
             >
               Marketplace
             </Link>
@@ -44,7 +51,11 @@ const Navbar = ({ sidebarOpen, setSidebar }) => {
           <li>
             <Link
               to={url.auction}
-              className="focus:underline focus:font-medium font-normal"
+              className={
+                pathname === url.auction
+                  ? "underline font-medium"
+                  : "font-normal"
+              }
             >
               Auction
             </Link>
@@ -52,7 +63,9 @@ const Navbar = ({ sidebarOpen, setSidebar }) => {
           <li>
             <Link
               to={url.drops}
-              className="focus:underline focus:font-medium font-normal"
+              className={
+                pathname === url.drops ? "underline font-medium" : "font-normal"
+              }
             >
               Drop
             </Link>

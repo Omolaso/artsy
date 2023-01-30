@@ -28,7 +28,7 @@ const Notification = () => {
     <>
       <Navbar />
       <main className="flex items-start justify-center my-[10px] md:my-[15px] px-4 md:px-8">
-        <div className="flex flex-col gap-16 md:gap-20">
+        <div className="flex flex-col gap-10 md:gap-20">
           <h1 className="font-bold md:font-medium text-[30px] md:text-[48px]">
             Stay informed at all time!
           </h1>
