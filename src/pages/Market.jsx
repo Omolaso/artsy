@@ -236,8 +236,8 @@ const Market = () => {
                 id="search"
                 autoComplete="off"
                 autoFocus
-                placeholder="Search"
-                className="marketplace-search bg-artsy-searchGrey focus:outline-none font-medium text-2xl max-[1000px]:text-xl w-full"
+                placeholder="Search by name"
+                className="marketplace-search bg-artsy-searchGrey placeholder:text-lg focus:outline-none font-medium text-2xl max-[1000px]:text-xl w-full"
               />
               <FontAwesomeIcon
                 onClick={clearSearchValue}

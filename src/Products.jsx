@@ -1,3 +1,5 @@
+import areWeThere from "./images/landing-page-images/image2.png";
+import oloibiri from "./images/landing-page-images/image3.png";
 import monalisa from "./images/landing-page-images/image4.png";
 import slide1 from "./images/landing-page-images/image5.svg";
 import slide2 from "./images/landing-page-images/image6.svg";
@@ -384,6 +386,7 @@ export const allProducts = [
   { name: "Mant", creator: "Luke", id: 25, url: `${slide1}` },
   { name: "Olive", creator: "Clearamane", id: 26, url: `${slide2}` },
   { name: "Mill", creator: "Sam", id: 27, url: `${slide3}` },
+  { name: "Are We There Yet?", creator: "Sam", id: 58, url: `${areWeThere}` },
   { name: "Young Guy", creator: "Ali Dawa", id: 1, url: `${homepageSlide1}` },
   {
     name: "Holding Flower",
@@ -559,6 +562,16 @@ export const allProducts = [
     date: "12.08.2022",
     bidPrice: "$6500",
     highestBid: "$10000",
+    popular: true,
+  },
+  {
+    name: "Oloibiri",
+    id: 60,
+    imgUrl: `${oloibiri}`,
+    creator: "Dan Murray",
+    date: "12.08.2022",
+    bidPrice: "$6500",
+    highestBid: "$20000",
     popular: true,
   },
 ];

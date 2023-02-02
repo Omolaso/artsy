@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
-import { Navbar, Footer } from "../components";
+import { Footer } from "../components";
 
 const Notification = () => {
   const [scrollUpBtn, setScrollUpBtn] = useState(false);
@@ -26,9 +26,6 @@ const Notification = () => {
 
   return (
     <>
-      <div className="flex items-center justify-center max-h-[8vh] md:max-h-[12vh]">
-        <Navbar />
-      </div>
       <main className="flex items-start justify-center my-[10px] md:my-[15px] px-4 md:px-8">
         <div className="flex flex-col gap-5">
           <h1 className="font-bold md:font-medium text-center md:text-left text-[30px] md:text-[48px] text-artsy-text-greyBlack">

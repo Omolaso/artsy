@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Navbar } from "../components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose, faRefresh } from "@fortawesome/free-solid-svg-icons";
 import searchIcon from "../images/market-place/marketplaceSearchIcon.svg";
@@ -19,6 +18,7 @@ const Search = () => {
     }
     if (searchProducts) {
       setSearchProducts([]);
+      setNoMatch(false);
     }
     setRefresher(true);
     const filtered = allProducts.filter(
@@ -44,10 +44,9 @@ const Search = () => {
   };
   return (
     <>
-      <Navbar />
       <main className="flex flex-col gap-6 px-4 md:px-8 mt-6">
         <h1 className="text-[24px] text-artsy-text-greyBlack font-medium">
-          Search all products
+          Search gallery
         </h1>
         <section className="flex flex-col gap-4">
           <div className="flex flex-row w-full gap-4 max-w-2xl">
@@ -74,7 +73,7 @@ const Search = () => {
                 id="search"
                 autoComplete="off"
                 autoFocus
-                placeholder="Search by name, id or artist"
+                placeholder="Search by name, id or creator"
                 className="marketplace-search bg-artsy-searchGrey focus:outline-none font-medium text-lg placeholder:text-[13px] sm:placeholder:text-base w-full"
               />
               <FontAwesomeIcon

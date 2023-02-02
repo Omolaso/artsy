@@ -35,11 +35,11 @@ const Routers = () => {
             <Route path={url.auction} element={<Auction />} />
             <Route path={url.drops} element={<Drops />} />
             <Route path={url.cart} element={<Cart />} />
+            <Route path={url.notify} element={<Notifications />} />
+            <Route path={url.search} element={<Search />} />
           </Route>
 
-          <Route path={url.notify} element={<Notifications />} />
           <Route path={url.singleAuction} element={<SingleAuction />} />
-          <Route path={url.search} element={<Search />} />
           <Route path={url.singleSearch} element={<SingleSearch />} />
         </Routes>
       </Suspense>
