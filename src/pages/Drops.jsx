@@ -14,7 +14,7 @@ const Drops = () => {
     <>
       <main className="flex flex-col gap-20 md:my-[15px] my-[10px] px-4 md:px-8">
         <section className="flex items-center justify-center">
-          <div className="flex flex-col items-center text-center gap-6 md:gap-8">
+          <div className="flex flex-col items-center text-center gap-4 md:gap-6">
             <h1 className="font-bold md:font-medium text-[30px] md:text-[48px]">
               Upcoming drops
             </h1>
@@ -24,7 +24,7 @@ const Drops = () => {
             <button
               type="button"
               onClick={() => navigate("/notifications")}
-              className="max-w-[260px] md:max-w-[420px] w-full rounded-[6px] hover:bg-artsy-text-greyBlack hover:text-artsy-searchGrey ease-in-out duration-500 md:rounded-[10px] font-medium text-[22px] md:text-[36px] border min-h-[50px] md:min-h-[86px]"
+              className="max-w-[260px] md:max-w-[420px] w-full rounded-[6px] hover:bg-artsy-text-greyBlack hover:text-artsy-searchGrey ease-in-out duration-500 md:rounded-[10px] font-medium text-[22px] md:text-[36px] border min-h-[50px] md:min-h-[80px]"
             >
               Notify me
             </button>

@@ -260,12 +260,12 @@ const Home = () => {
                     "linear-gradient(0deg, rgba(0, 0, 0, 0.52), rgba(0, 0, 0, 0.52)), linear-gradient(104.57deg, rgba(0, 0, 0, 0.1) 21.03%, rgba(0, 0, 0, 0.2) 56.5%, rgba(0, 0, 0, 0.2) 93.84%)",
                   backgroundImage: `url(${exhibite[currentIndex].url})`,
                   backgroundSize: "cover",
-                  backgroundPositionY: "center",
+                  backgroundPosition: "top",
                   backgroundRepeat: "no-repeat",
                   width: "100%",
                   position: "relative",
                 }}
-                className="min-h-[350px] md:min-h-[546px] flex item-center justify-center md:items-end md:justify-start p-8"
+                className="min-h-[350px] md:min-h-[546px] flex item-center justify-center duration-500 ease-in-out md:items-end md:justify-start p-8"
               >
                 <div className="flex flex-row items-center gap-x-4 w-full max-w-[705px]">
                   <h1 className="hidden md:block font-normal text-[40px] md:text-[70px]">
@@ -287,7 +287,7 @@ const Home = () => {
             </div>
 
             <div className="hidden md:flex items-center justify-center gap-4 self-end w-full h-[70px] max-w-[160px]">
-              <button type="button" onClick={prevSlide}>
+              <button type="button" onClick={() => prevSlide()}>
                 <FontAwesomeIcon
                   icon={faChevronLeft}
                   style={{
@@ -296,10 +296,10 @@ const Home = () => {
                       "7.77035px 7.77035px 11.6555px rgba(0, 0, 0, 0.15)",
                     backdropFilter: "blur(7.77035px)",
                   }}
-                  className="border p-4 rounded-full text-base"
+                  className="border p-4 rounded-full text-base focus:outline-0"
                 />
               </button>
-              <button type="button" onClick={nextSlide}>
+              <button type="button" onClick={() => nextSlide()}>
                 <FontAwesomeIcon
                   icon={faChevronRight}
                   style={{
@@ -308,7 +308,7 @@ const Home = () => {
                       "7.77035px 7.77035px 11.6555px rgba(0, 0, 0, 0.15)",
                     backdropFilter: "blur(7.77035px)",
                   }}
-                  className="border p-4 rounded-full text-base"
+                  className="border p-4 rounded-full text-base focus:outline-0"
                 />
               </button>
             </div>

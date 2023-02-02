@@ -12,6 +12,7 @@ const Auction = React.lazy(() => import("./pages/Auction"));
 const SingleAuction = React.lazy(() => import("./pages/SingleAuction"));
 const Drops = React.lazy(() => import("./pages/Drops"));
 const Search = React.lazy(() => import("./pages/Search"));
+const SingleSearch = React.lazy(() => import("./pages/SingleSearch"));
 const Cart = React.lazy(() => import("./pages/Cart"));
 const Notifications = React.lazy(() => import("./pages/Notification"));
 
@@ -39,6 +40,7 @@ const Routers = () => {
           <Route path={url.notify} element={<Notifications />} />
           <Route path={url.singleAuction} element={<SingleAuction />} />
           <Route path={url.search} element={<Search />} />
+          <Route path={url.singleSearch} element={<SingleSearch />} />
         </Routes>
       </Suspense>
     </>

@@ -43,8 +43,8 @@ const Sidebar = ({ sidebarOpen, setSidebar }) => {
   };
 
   return (
-    <div className="w-full h-[10vh]">
-      <main
+    <main className="w-full h-[10vh] overflow-y-hidden">
+      <section
         className={
           sidebarOpen
             ? "hidden"
@@ -75,10 +75,10 @@ const Sidebar = ({ sidebarOpen, setSidebar }) => {
             </button>
           </li>
         </ul>
-      </main>
+      </section>
 
-      <main className="flex items-start justify-start min-h-screen w-full py-8">
-        <section
+      <section className="flex items-start justify-start min-h-screen w-full py-8">
+        <div
           className={
             sidebarOpen
               ? "fixed left-0 duration-500 ease-in-out flex flex-col justify-between h-[50vh] w-full px-4"
@@ -121,9 +121,9 @@ const Sidebar = ({ sidebarOpen, setSidebar }) => {
               </button>
             </li>
           </ul>
-        </section>
-      </main>
-    </div>
+        </div>
+      </section>
+    </main>
   );
 };
 

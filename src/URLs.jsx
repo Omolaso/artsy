@@ -7,6 +7,7 @@ export const url = {
   singleAuction: "/auction/:auctionId",
   drops: "/drops",
   search: "/search",
+  singleSearch: "/search/:searchId",
   cart: "/yourcart",
   notify: "/notifications",
 };

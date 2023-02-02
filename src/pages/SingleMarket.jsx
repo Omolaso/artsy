@@ -88,14 +88,24 @@ const SingleMarket = () => {
 
               <div className="flex flex-col gap-4 px-4">
                 <div className="flex flex-row items-center justify-start gap-8 font-medium text-[30px] md:text-[36px]">
-                  <button type="button"> - </button>
+                  <button
+                    type="button"
+                    className="active:scale-75 ease-in-out duration-300"
+                  >
+                    -
+                  </button>
                   <h1> 0 </h1>
-                  <button type="button"> + </button>
+                  <button
+                    type="button"
+                    className="active:scale-75 ease-in-out duration-300"
+                  >
+                    +
+                  </button>
                 </div>
                 <div className="flex flex-row items-center justify-start gap-4">
                   <button
                     type="button"
-                    className="w-full max-w-[214px] md:max-w-[315px] h-[55px] md:h-[76px] outline-none bg-artsy-button-blue text-artsy-background-white font-medium text-[18px] md:text-[26px] rounded-[4px]"
+                    className="active:scale-95 ease-in-out duration-300 w-full max-w-[214px] md:max-w-[315px] h-[55px] md:h-[76px] outline-none bg-artsy-button-blue text-artsy-background-white font-medium text-[18px] md:text-[26px] rounded-[4px]"
                   >
                     Add to cart
                   </button>

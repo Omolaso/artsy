@@ -9,8 +9,8 @@ const Notification = () => {
   useEffect(() => {
     window.addEventListener("scroll", () => {
       if (
-        document.documentElement.scrollTop > 30 ||
-        document.body.scrollTop > 30
+        document.documentElement.scrollTop > 10 ||
+        document.body.scrollTop > 10
       ) {
         setScrollUpBtn(true);
       } else {
@@ -26,44 +26,58 @@ const Notification = () => {
 
   return (
     <>
-      <Navbar />
+      <div className="flex items-center justify-center max-h-[8vh] md:max-h-[12vh]">
+        <Navbar />
+      </div>
       <main className="flex items-start justify-center my-[10px] md:my-[15px] px-4 md:px-8">
-        <div className="flex flex-col gap-10 md:gap-20">
-          <h1 className="font-bold md:font-medium text-[30px] md:text-[48px]">
+        <div className="flex flex-col gap-5">
+          <h1 className="font-bold md:font-medium text-center md:text-left text-[30px] md:text-[48px] text-artsy-text-greyBlack">
             Stay informed at all time!
           </h1>
-          <form className="border flex flex-col gap-6">
-            <label htmlFor="name" className="flex flex-col gap-1">
+          <form className="flex flex-col gap-4">
+            <label
+              htmlFor="name"
+              className="flex flex-col gap-1 font-medium md:font-semibold text-[16px] md:text-[20px]"
+            >
               Name:
               <input
                 type="text"
                 name="name"
                 id="name"
-                className="border focus:outline-0"
+                className="border focus:outline-0 px-3 min-h-[50px]"
+                autoComplete="off"
               />
             </label>
-            <label htmlFor="email" className="flex flex-col gap-1">
+            <label
+              htmlFor="email"
+              className="flex flex-col gap-1 font-medium md:font-semibold text-[16px] md:text-[20px]"
+            >
               Email:
               <input
                 type="email"
                 name="email"
                 id="email"
-                className="border focus:outline-0"
+                className="border focus:outline-0 px-3 min-h-[50px]"
+                autoComplete="off"
               />
             </label>
-            <label htmlFor="number" className="flex flex-col gap-1">
+            <label
+              htmlFor="number"
+              className="flex flex-col gap-1 font-medium md:font-semibold text-[16px] md:text-[20px]"
+            >
               Phone Number:
               <input
                 type="tel"
                 name="number"
                 id="number"
-                className="border focus:outline-0"
+                className="border focus:outline-0 px-3 min-h-[50px]"
+                autoComplete="off"
               />
             </label>
 
             <button
               type="submit"
-              className="max-w-[260px] md:max-w-[420px] mx-auto w-full rounded-[6px] hover:bg-artsy-text-greyBlack hover:text-artsy-searchGrey ease-in-out duration-500 md:rounded-[10px] font-medium text-[22px] md:text-[36px] border min-h-[50px] md:min-h-[86px]"
+              className="w-full rounded-[6px] bg-artsy-text-greyBlack text-artsy-searchGrey md:rounded-[10px] font-medium md:font-semibold text-[18px] md:text-[24px] border min-h-[50px] md:min-h-[60px]"
             >
               Notify Me
             </button>
