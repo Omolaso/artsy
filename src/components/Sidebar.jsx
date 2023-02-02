@@ -51,7 +51,7 @@ const Sidebar = ({ sidebarOpen, setSidebar }) => {
             : "flex items-center justify-between w-full h-full px-4"
         }
       >
-        <button onClick={toggleSidebar}>
+        <button onClick={() => toggleSidebar()}>
           <FontAwesomeIcon icon={faBars} className="text-[20px]" />
         </button>
         <div className="font-bold text-[24px] text-artsy-text-black">
@@ -87,13 +87,13 @@ const Sidebar = ({ sidebarOpen, setSidebar }) => {
         >
           <div className="flex flex-row items-center justify-between w-full">
             <div className="font-bold text-[24px] text-artsy-text-black">
-              <button type="button" onClick={backToLandingPage}>
+              <button type="button" onClick={() => backToLandingPage()}>
                 ARTSY.
               </button>
             </div>
 
             <div className="text-[24px]">
-              <button type="button" onClick={removeSidebar}>
+              <button type="button" onClick={() => removeSidebar()}>
                 <img src={closeIcon} alt="closeIcon" />
               </button>
             </div>
@@ -101,22 +101,22 @@ const Sidebar = ({ sidebarOpen, setSidebar }) => {
 
           <ul className="flex flex-col items-start justify-between text-[24px] font-medium text-artsy-text-greyBlack h-[40vh] w-full">
             <li>
-              <button type="button" onClick={backHome}>
+              <button type="button" onClick={() => backHome()}>
                 Home
               </button>
             </li>
             <li>
-              <button type="button" onClick={goToMarketplace}>
+              <button type="button" onClick={() => goToMarketplace()}>
                 Marketplace
               </button>
             </li>
             <li>
-              <button type="button" onClick={goToAuction}>
+              <button type="button" onClick={() => goToAuction()}>
                 Auctions
               </button>
             </li>
             <li>
-              <button type="button" onClick={goToDrops}>
+              <button type="button" onClick={() => goToDrops()}>
                 Drop
               </button>
             </li>

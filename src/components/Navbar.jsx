@@ -21,7 +21,7 @@ const Navbar = ({ sidebarOpen, setSidebar }) => {
     <main className="flex items-center justify-center md:h-[12vh] w-full">
       <section className="hidden md:flex items-center justify-between w-full md:px-8">
         <div className="font-bold text-[32px] max-[1000px]:text-[28px] text-artsy-text-black">
-          <button type="button" onClick={backToLandingPage}>
+          <button type="button" onClick={() => backToLandingPage()}>
             ARTSY.
           </button>
         </div>
@@ -82,7 +82,7 @@ const Navbar = ({ sidebarOpen, setSidebar }) => {
             </button>
           </li>
           <li>
-            <button type="button" onClick={goToCart}>
+            <button type="button" onClick={() => goToCart()}>
               <img
                 src={cartIcon}
                 alt="cart"

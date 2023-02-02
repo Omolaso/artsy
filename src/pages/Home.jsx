@@ -287,7 +287,11 @@ const Home = () => {
             </div>
 
             <div className="hidden md:flex items-center justify-center gap-4 self-end w-full h-[70px] max-w-[160px]">
-              <button type="button" onClick={() => prevSlide()}>
+              <button
+                type="button"
+                className="focus:outline-0"
+                onClick={() => prevSlide()}
+              >
                 <FontAwesomeIcon
                   icon={faChevronLeft}
                   style={{
@@ -296,10 +300,14 @@ const Home = () => {
                       "7.77035px 7.77035px 11.6555px rgba(0, 0, 0, 0.15)",
                     backdropFilter: "blur(7.77035px)",
                   }}
-                  className="border p-4 rounded-full text-base focus:outline-0"
+                  className="border p-4 rounded-full text-base"
                 />
               </button>
-              <button type="button" onClick={() => nextSlide()}>
+              <button
+                type="button"
+                className="focus:outline-0"
+                onClick={() => nextSlide()}
+              >
                 <FontAwesomeIcon
                   icon={faChevronRight}
                   style={{
@@ -308,7 +316,7 @@ const Home = () => {
                       "7.77035px 7.77035px 11.6555px rgba(0, 0, 0, 0.15)",
                     backdropFilter: "blur(7.77035px)",
                   }}
-                  className="border p-4 rounded-full text-base focus:outline-0"
+                  className="border p-4 rounded-full text-base"
                 />
               </button>
             </div>
