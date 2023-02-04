@@ -5,8 +5,10 @@ import cartIcon from "../images/utils/cartIcon.svg";
 import searchIcon from "../images/utils/searchIcon.svg";
 import notifyIcon from "../images/utils/notifyIcon.svg";
 import { Sidebar } from "../components";
+import { useSelector } from "react-redux";
 
 const Navbar = ({ sidebarOpen, setSidebar }) => {
+  const { amount } = useSelector((store) => store.cart);
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
@@ -81,7 +83,7 @@ const Navbar = ({ sidebarOpen, setSidebar }) => {
               />
             </button>
           </li>
-          <li>
+          <li className="relative">
             <button type="button" onClick={() => goToCart()}>
               <img
                 src={cartIcon}
@@ -89,6 +91,9 @@ const Navbar = ({ sidebarOpen, setSidebar }) => {
                 className="max-[1000px]:w-[20px] w-[28px] h-[28px]"
               />
             </button>
+            <p className="absolute top-[-15px] right-[-5px] text-[24px] text-artsy-like-red font-semibold">
+              {amount}
+            </p>
           </li>
           <li>
             <button type="button" onClick={() => navigate(url.notify)}>

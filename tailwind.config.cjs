@@ -17,6 +17,9 @@ module.exports = {
       "artsy-dropEnded": "#999EA5",
       "artsy-button-blue": "#3341C1",
       "artsy-like-red": "#F44336",
+      "artsy-cartBorder": "#747474",
+      "artsy-linkBlue": "#006CA2",
+      "artsy-cartTextColor": "#888888",
     },
     fontFamily: {
       sans: ["Roboto", "sans-serif"],

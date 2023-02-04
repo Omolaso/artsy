@@ -332,7 +332,7 @@ const Home = () => {
               <FontAwesomeIcon
                 icon={faArrowRight}
                 className="text-[24px] md:text-[48px] align-middle font-medium rounded-full md:rounded-none border md:border-0 border-artsy-text-greyBlack md:p-0 p-2 text-artsy-text-greyBlack md:text-artsy-linearGradient-blue"
-                onClick={goToMarketplace}
+                onClick={() => goToMarketplace()}
               />
             </button>
           </div>
@@ -345,7 +345,7 @@ const Home = () => {
               <FontAwesomeIcon
                 icon={faArrowRight}
                 className="text-[24px] md:text-[48px] align-middle font-medium rounded-full md:rounded-none border md:border-0 border-artsy-text-greyBlack md:p-0 p-2 text-artsy-text-greyBlack md:text-artsy-linearGradient-blue"
-                onClick={goToAuction}
+                onClick={() => goToAuction()}
               />
             </button>
           </div>
