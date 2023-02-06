@@ -9,5 +9,6 @@ export const url = {
   search: "/search",
   singleSearch: "/search/:searchId",
   cart: "/yourcart",
+  shipping: "/shippingDetails",
   notify: "/notifications",
 };

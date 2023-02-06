@@ -51,6 +51,7 @@ export const marketPlaceGrid = [
     category: "Editorials",
     madeIn: "Made in Italy",
     totalViews: "1.7k views",
+    amount: 1,
   },
   {
     name: "BOOLEAN EGYPTIAN",
@@ -64,6 +65,7 @@ export const marketPlaceGrid = [
     category: "Fashion",
     madeIn: "Made in Egypt",
     totalViews: "1k views",
+    amount: 1,
   },
   {
     name: "BLANC",
@@ -77,6 +79,7 @@ export const marketPlaceGrid = [
     category: "Editorials",
     madeIn: "Made in South Africa",
     totalViews: "1.1k views",
+    amount: 1,
   },
   {
     name: "ELLIPSIA",
@@ -90,6 +93,7 @@ export const marketPlaceGrid = [
     category: "Editorials",
     madeIn: "Made in Paraguay",
     totalViews: "1.8k views",
+    amount: 1,
   },
   {
     name: "THE LAW MAKERS",
@@ -103,6 +107,7 @@ export const marketPlaceGrid = [
     category: "Art & Museum",
     madeIn: "Made in USA",
     totalViews: "2.5k views",
+    amount: 1,
   },
   {
     name: "VEIL",
@@ -116,6 +121,7 @@ export const marketPlaceGrid = [
     category: "Fashion",
     madeIn: "Made in USA",
     totalViews: "1.2k views",
+    amount: 1,
   },
   {
     name: "ALTERNATING",
@@ -129,6 +135,7 @@ export const marketPlaceGrid = [
     category: "Optics",
     madeIn: "Made in Nigeria",
     totalViews: "3k views",
+    amount: 1,
   },
   {
     name: "ROSEMARY",
@@ -142,6 +149,7 @@ export const marketPlaceGrid = [
     category: "Fashion",
     madeIn: "Made in Italy",
     totalViews: "1.6k views",
+    amount: 1,
   },
   {
     name: "BEVERLY",
@@ -155,6 +163,7 @@ export const marketPlaceGrid = [
     category: "Nature",
     madeIn: "Made in Argentina",
     totalViews: "2k views",
+    amount: 1,
   },
 ];
 
@@ -330,6 +339,7 @@ export const allProducts = [
     auction: "UPCOMING",
     inProgress: "upcoming",
     value: 2,
+    amount: 1,
   },
   {
     name: "Ginger Suburbs",
@@ -342,6 +352,7 @@ export const allProducts = [
     auction: "LIVE NOW",
     inProgress: true,
     value: 5,
+    amount: 1,
   },
   {
     name: "Sink",
@@ -354,6 +365,7 @@ export const allProducts = [
     auction: "ENDED",
     inProgress: false,
     value: 4,
+    amount: 1,
   },
   {
     name: "Wrapped '99",
@@ -366,6 +378,7 @@ export const allProducts = [
     auction: "ENDED",
     inProgress: false,
     value: 12,
+    amount: 1,
   },
   {
     name: "MONALISA REDEFINED",
@@ -377,6 +390,7 @@ export const allProducts = [
     url: `${monalisa}`,
     creator: "Clearamane",
     value: 35,
+    amount: 1,
   },
   {
     name: "Sink",
@@ -387,16 +401,32 @@ export const allProducts = [
     id: 24,
     url: `${Sink}`,
     creator: "Sam",
+    amount: 1,
   },
-  { name: "Mant", creator: "Luke", id: 25, url: `${slide1}`, value: 5 },
-  { name: "Olive", creator: "Clearamane", id: 26, url: `${slide2}`, value: 8 },
-  { name: "Mill", creator: "Sam", id: 27, url: `${slide3}` },
+  {
+    name: "Mant",
+    creator: "Luke",
+    id: 25,
+    url: `${slide1}`,
+    amount: 1,
+    value: 5,
+  },
+  {
+    name: "Olive",
+    creator: "Clearamane",
+    id: 26,
+    url: `${slide2}`,
+    amount: 1,
+    value: 8,
+  },
+  { name: "Mill", creator: "Sam", id: 27, url: `${slide3}`, amount: 1 },
   {
     name: "Are We There Yet?",
     creator: "Sam",
     id: 58,
     url: `${areWeThere}`,
     value: 10,
+    amount: 1,
   },
   {
     name: "Young Guy",
@@ -404,12 +434,14 @@ export const allProducts = [
     id: 1,
     url: `${homepageSlide1}`,
     value: 2,
+    amount: 1,
   },
   {
     name: "Holding Flower",
     creator: "Tina Benson",
     id: 2,
     url: `${homepageSlide2}`,
+    amount: 1,
   },
   {
     name: "Young Girl",
@@ -417,6 +449,7 @@ export const allProducts = [
     id: 3,
     url: `${homepageSlide3}`,
     value: 41,
+    amount: 1,
   },
   {
     name: "Kangaroo",
@@ -424,6 +457,7 @@ export const allProducts = [
     id: 4,
     url: `${homepageSlide4}`,
     value: 20,
+    amount: 1,
   },
   {
     name: "Fruit",
@@ -431,6 +465,7 @@ export const allProducts = [
     id: 5,
     url: `${homepageSlide5}`,
     value: 15,
+    amount: 1,
   },
   {
     name: "ROAD TO EGYPT",
@@ -441,6 +476,7 @@ export const allProducts = [
     url: `${Road}`,
     category: "Editorials",
     value: 100,
+    amount: 1,
   },
   {
     name: "PHILOMENA'22",
@@ -454,6 +490,7 @@ export const allProducts = [
     category: "Editorials",
     madeIn: "Made in Italy",
     totalViews: "1.7k views",
+    amount: 1,
   },
   {
     name: "BOOLEAN EGYPTIAN",
@@ -467,6 +504,7 @@ export const allProducts = [
     category: "Fashion",
     madeIn: "Made in Egypt",
     totalViews: "1k views",
+    amount: 1,
   },
   {
     name: "BLANC",
@@ -480,6 +518,7 @@ export const allProducts = [
     category: "Editorials",
     madeIn: "Made in South Africa",
     totalViews: "1.1k views",
+    amount: 1,
   },
   {
     name: "ELLIPSIA",
@@ -493,6 +532,7 @@ export const allProducts = [
     category: "Editorials",
     madeIn: "Made in Paraguay",
     totalViews: "1.8k views",
+    amount: 1,
   },
   {
     name: "THE LAW MAKERS",
@@ -506,6 +546,7 @@ export const allProducts = [
     category: "Art & Museum",
     madeIn: "Made in USA",
     totalViews: "2.5k views",
+    amount: 1,
   },
   {
     name: "VEIL",
@@ -519,6 +560,7 @@ export const allProducts = [
     category: "Fashion",
     madeIn: "Made in USA",
     totalViews: "1.2k views",
+    amount: 1,
   },
   {
     name: "ALTERNATING",
@@ -532,6 +574,7 @@ export const allProducts = [
     category: "Optics",
     madeIn: "Made in Nigeria",
     totalViews: "3k views",
+    amount: 1,
   },
   {
     name: "ROSEMARY",
@@ -545,6 +588,7 @@ export const allProducts = [
     category: "Fashion",
     madeIn: "Made in Italy",
     totalViews: "1.6k views",
+    amount: 1,
   },
   {
     name: "BEVERLY",
@@ -558,6 +602,7 @@ export const allProducts = [
     category: "Nature",
     madeIn: "Made in Argentina",
     totalViews: "2k views",
+    amount: 1,
   },
   {
     name: "Sunset",
@@ -565,6 +610,7 @@ export const allProducts = [
     id: 15,
     imgUrl: `${auctionSlide1}`,
     creator: "Stormy Raily",
+    amount: 1,
   },
   {
     name: "Crafty",
@@ -572,6 +618,7 @@ export const allProducts = [
     id: 16,
     imgUrl: `${auctionSlide2}`,
     creator: "Declar Grey",
+    amount: 1,
   },
   {
     name: "Hanged",
@@ -580,6 +627,7 @@ export const allProducts = [
     value: 7,
     imgUrl: `${auctionSlide3}`,
     creator: "Ali Coman",
+    amount: 1,
   },
   {
     name: "Falling apart",
@@ -591,6 +639,7 @@ export const allProducts = [
     highestBid: "$9000",
     value: 9,
     popular: true,
+    amount: 1,
   },
   {
     name: "Out of the box",
@@ -602,6 +651,7 @@ export const allProducts = [
     bidPrice: "$6500",
     highestBid: "$10000",
     popular: true,
+    amount: 1,
   },
   {
     name: "Oloibiri",
@@ -613,5 +663,6 @@ export const allProducts = [
     highestBid: "$20000",
     popular: true,
     value: 2,
+    amount: 1,
   },
 ];

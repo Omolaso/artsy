@@ -1,14 +1,21 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
+import {
+  removeItem,
+  incrementInCart,
+  decrementInCart,
+} from "../reduxSlice/CartSlice";
 
 const Cart = () => {
-  const { amount, total, cartItems } = useSelector((store) => store.cart);
-  const shippingFee = amount * 2;
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { cartQuantity, total, cartItems } = useSelector((store) => store.cart);
+  const shippingFee = cartQuantity * 2;
 
-  if (amount < 1) {
+  if (cartQuantity < 1) {
     return (
       <h1 className="px-4 md:px-8 text-center text-artsy-text-greyBlack text-[20px] md:text-[48px] font-bold mt-10">
         CART IS EMPTY
@@ -16,10 +23,15 @@ const Cart = () => {
     );
   }
 
-  const cartItem = cartItems.map((item) => (
+  const checkOut = () => {
+    if (cartItems.length < 1) return;
+    navigate("/shippingDetails");
+  };
+
+  const eachItem = cartItems.map((item) => (
     <article
       key={item.id}
-      className="flex items-center justify-between md:border-t border-t-0 border-artsy-cartBorder py-4 w-full"
+      className="flex flex-row items-center justify-between md:border-t border-t-0 border-artsy-cartBorder py-4 w-full"
     >
       <div className="flex items-center justify-center gap-5">
         <img
@@ -36,7 +48,10 @@ const Cart = () => {
             {item.name}
           </h1>
 
-          <h1 className="hidden md:block font-medium text-[24px] text-artsy-cartTextColor">
+          <h1 className="hidden md:flex items-center justify-start gap-2 font-medium text-[24px] text-artsy-black">
+            <span className="font-medium text-[24px] text-artsy-cartTextColor">
+              Creator:
+            </span>
             {item.creator}
           </h1>
           <h1 className="hidden md:flex items-center justify-start gap-2 text-[20px] font-medium">
@@ -46,17 +61,25 @@ const Cart = () => {
             {item.size ? item.size : "Not Stated"}
           </h1>
 
-          <div className="flex flex-row items-center md:justify-start justify-center gap-5 border md:border-0 rounded-lg font-medium text-[20px] md:text-[32px] md:max-w-[70%] max-w-[110px]">
+          <div className="flex flex-row items-center md:justify-start justify-center gap-0 md:gap-5 border md:border-0 rounded-lg font-medium text-[20px] md:text-[32px] md:max-w-[70%] max-w-[110px]">
             <button
               type="button"
-              className="md:border-r-0 border-r flex-1 md:px-0 px-3"
+              onClick={() => {
+                item.amount === 1
+                  ? dispatch(removeItem(item))
+                  : dispatch(decrementInCart(item));
+              }}
+              className="md:border-r-0 border-r flex-1 active:opacity-90 px-2 md:px-0"
             >
               -
             </button>
-            <p className="flex-1 self-center text-center"> 0 </p>
+            <p className="flex-1 self-center text-center px-2 md:px-0">
+              {item.amount}
+            </p>
             <button
               type="button"
-              className="md:border-l-0 border-l flex-1 md:px-0 px-3"
+              className="flex-1 md:border-l-0 border-l active:opacity-90 px-2 md:px-0"
+              onClick={() => dispatch(incrementInCart(item))}
             >
               +
             </button>
@@ -65,14 +88,18 @@ const Cart = () => {
       </div>
 
       <div className="flex flex-col items-center justify-between min-h-[110px] md:min-h-[160px]">
-        <button type="button" className="">
+        <button
+          type="button"
+          className="flex items-center justify-center w-full"
+          onClick={() => dispatch(removeItem(item))}
+        >
           <FontAwesomeIcon
             icon={faClose}
-            className="font-normal text-[12px] md:text-[15px] text-artsy-cartTextColor border rounded-[100%] p-2 md:px-2 md:py-1"
+            className="font-normal text-[12px] md:text-[15px] text-artsy-cartTextColor border rounded-[100%] px-2 py-1"
           />
         </button>
 
-        <h1 className="font-normal text-[24px] md:text-[36px] text-artsy-cartTextColor">
+        <h1 className="font-normal text-[20px] md:text-[36px] text-artsy-cartTextColor">
           {item.value ? `$${item.value}` : `$${35}`}
         </h1>
       </div>
@@ -83,7 +110,7 @@ const Cart = () => {
     <main className="flex flex-col justify-between px-4 md:px-8 w-full min-h-screen">
       <section className="hidden md:block">Navs</section>
       <section className="flex-1 flex flex-col items-start justify-between w-full">
-        {cartItem}
+        {eachItem}
       </section>
 
       <footer className="flex-[0.2] flex flex-col py-4 gap-6 border-t border-artsy-cartBorder">
@@ -91,6 +118,7 @@ const Cart = () => {
           <div className="flex-[0.7] flex flex-col gap-5 items-center max-w-[350px] justify-start w-full order-3 md:order-1">
             <button
               type="button"
+              onClick={() => checkOut()}
               className="active:scale-95 ease-in-out duration-300 w-full max-w-[300px] md:max-w-full min-h-[50px] md:min-h-[76px] outline-none bg-artsy-button-blue text-artsy-background-white font-medium text-[18px] md:text-[26px] rounded-[4px]"
             >
               Proceed to checkout
@@ -112,7 +140,7 @@ const Cart = () => {
             <div className="flex items-center justify-between w-full font-normal text-[20px] md:text-[28px]">
               <p className="text-artsy-cartTextColor">Products in cart:</p>
               <p className="text-artsy-black">
-                {amount} {amount > 1 ? "items" : "item"}
+                {cartQuantity} {cartQuantity > 1 ? "items" : "item"}
               </p>
             </div>
 

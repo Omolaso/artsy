@@ -9,7 +9,7 @@ import searchIcon from "../images/utils/searchIcon.svg";
 import { useSelector } from "react-redux";
 
 const Sidebar = ({ sidebarOpen, setSidebar }) => {
-  const { amount } = useSelector((store) => store.cart);
+  const { cartQuantity } = useSelector((store) => store.cart);
   const navigate = useNavigate();
 
   function toggleSidebar() {
@@ -76,7 +76,7 @@ const Sidebar = ({ sidebarOpen, setSidebar }) => {
               <img src={cartIcon} alt="cart" className="w-[16px] h-[16px]" />
             </button>
             <p className="absolute top-[-8px] right-[-5px] text-[16px] text-artsy-like-red font-semibold">
-              {amount}
+              {cartQuantity}
             </p>
           </li>
         </ul>

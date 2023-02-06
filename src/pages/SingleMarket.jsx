@@ -4,10 +4,15 @@ import { marketPlaceGrid } from "../Products";
 import { Footer } from "../components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch } from "react-redux";
+import { addItem, increment, decrement } from "../reduxSlice/CartSlice";
 
 const SingleMarket = () => {
+  const dispatch = useDispatch();
+
   const [description, setDescription] = useState(true);
   const [like, setLike] = useState(false);
+  const [toggle, setToggle] = useState(false);
   const { Id } = useParams();
   const navigate = useNavigate();
   const singleProduct = marketPlaceGrid.find(
@@ -15,8 +20,16 @@ const SingleMarket = () => {
   );
 
   // console.log(singleProduct);
-  const { nameLowercase, url, madeIn, totalViews, creator, category, price } =
-    singleProduct;
+  const {
+    nameLowercase,
+    url,
+    madeIn,
+    totalViews,
+    creator,
+    category,
+    price,
+    amount,
+  } = singleProduct;
 
   return (
     <>
@@ -90,14 +103,22 @@ const SingleMarket = () => {
                 <div className="flex flex-row items-center justify-start gap-8 font-medium text-[30px] md:text-[36px]">
                   <button
                     type="button"
-                    className="active:scale-75 ease-in-out duration-300"
+                    onClick={() => {
+                      setToggle(!toggle);
+                      dispatch(decrement(singleProduct));
+                    }}
+                    className="active:scale-75 ease-in-out duration-300 focus:outline-0"
                   >
                     -
                   </button>
-                  <h1> 0 </h1>
+                  <h1> {amount} </h1>
                   <button
                     type="button"
-                    className="active:scale-75 ease-in-out duration-300"
+                    onClick={() => {
+                      setToggle(!toggle);
+                      dispatch(increment(singleProduct));
+                    }}
+                    className="active:scale-75 ease-in-out duration-300 focus:outline-0"
                   >
                     +
                   </button>
@@ -105,6 +126,10 @@ const SingleMarket = () => {
                 <div className="flex flex-row items-center justify-start gap-4">
                   <button
                     type="button"
+                    onClick={() => {
+                      setToggle(!toggle);
+                      dispatch(addItem(singleProduct));
+                    }}
                     className="active:scale-95 ease-in-out duration-300 w-full max-w-[214px] md:max-w-[315px] h-[55px] md:h-[76px] outline-none bg-artsy-button-blue text-artsy-background-white font-medium text-[18px] md:text-[26px] rounded-[4px]"
                   >
                     Add to cart

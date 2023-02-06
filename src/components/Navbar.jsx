@@ -8,7 +8,7 @@ import { Sidebar } from "../components";
 import { useSelector } from "react-redux";
 
 const Navbar = ({ sidebarOpen, setSidebar }) => {
-  const { amount } = useSelector((store) => store.cart);
+  const { cartQuantity } = useSelector((store) => store.cart);
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
@@ -83,8 +83,8 @@ const Navbar = ({ sidebarOpen, setSidebar }) => {
               />
             </button>
           </li>
-          <li className="relative">
-            <button type="button" onClick={() => goToCart()}>
+          <li className="relative cursor-pointer" onClick={() => goToCart()}>
+            <button type="button" className=" focus:outline-0">
               <img
                 src={cartIcon}
                 alt="cart"
@@ -92,11 +92,15 @@ const Navbar = ({ sidebarOpen, setSidebar }) => {
               />
             </button>
             <p className="absolute top-[-15px] right-[-5px] text-[24px] text-artsy-like-red font-semibold">
-              {amount}
+              {cartQuantity}
             </p>
           </li>
           <li>
-            <button type="button" onClick={() => navigate(url.notify)}>
+            <button
+              type="button"
+              className=" focus:outline-0"
+              onClick={() => navigate(url.notify)}
+            >
               <img
                 src={notifyIcon}
                 alt="notification"
