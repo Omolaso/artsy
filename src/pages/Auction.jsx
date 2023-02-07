@@ -9,6 +9,7 @@ const Auction = () => {
   const [auction, setAuction] = useState([]);
   const [popular, setPopular] = useState([]);
   const [like, setLike] = useState(false);
+  const [like2, setLike2] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -92,17 +93,57 @@ const Auction = () => {
                     }}
                     className="flex flex-col gap-5 min-h-[260px] md:min-h-[500px] rounded-[15px] py-4"
                   >
+                    {/* OUT OF THE BOX */}
                     <button
                       type="button"
-                      className="px-4 md:px-8 self-end flex items-center justify-center fill-artsy-like-red active:outline-0 focus:outline-0 bg-artsy-background-white w-full max-w-[66px] md:max-w-[110px]"
-                      onClick={() => setLike(!like)}
+                      className={
+                        items.id === 30
+                          ? "px-4 md:px-8 self-end flex items-center justify-center fill-artsy-like-red active:outline-0 focus:outline-0 bg-artsy-background-white w-full max-w-[66px] md:max-w-[110px]"
+                          : "hidden"
+                      }
+                      onClick={() => items.id === 30 && setLike(!like)}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        fill={like ? "artsy-like-red" : "none"}
+                        fill={
+                          items.id === 30 && like ? "artsy-like-red" : "none"
+                        }
                         viewBox="0 0 24 24"
                         strokeWidth={0.8}
-                        stroke={like ? "none" : "currentColor"}
+                        stroke={
+                          items.id === 30 && like ? "none" : "currentColor"
+                        }
+                        onClick={() => items.id === 30 && setLike(!like)}
+                        className="w-[35px] md:w-[45px] h-[35px] md:h-[50px] border p-1 md:p-2 rounded-full"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
+                        />
+                      </svg>
+                    </button>
+
+                    {/* FALLING APART */}
+                    <button
+                      type="button"
+                      className={
+                        items.id === 31
+                          ? "px-4 md:px-8 self-end flex items-center justify-center fill-artsy-like-red active:outline-0 focus:outline-0 bg-artsy-background-white w-full max-w-[66px] md:max-w-[110px]"
+                          : "hidden"
+                      }
+                      onClick={() => items.id === 31 && setLike2(!like2)}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill={
+                          items.id === 31 && like2 ? "artsy-like-red" : "none"
+                        }
+                        viewBox="0 0 24 24"
+                        strokeWidth={0.8}
+                        stroke={
+                          items.id === 31 && like2 ? "none" : "currentColor"
+                        }
                         className="w-[35px] md:w-[45px] h-[35px] md:h-[50px] border p-1 md:p-2 rounded-full"
                       >
                         <path

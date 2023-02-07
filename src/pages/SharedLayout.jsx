@@ -47,8 +47,8 @@ const SharedLayout = () => {
           <button
             title="Back Up"
             type="button"
-            onClick={scrollBackUp}
-            className="border p-4 rounded-full bg-artsy-text-greyBlack text-artsy-background-white"
+            onClick={() => scrollBackUp()}
+            className="border p-4 rounded-full focus:outline-0 bg-artsy-text-greyBlack text-artsy-background-white"
           >
             <FontAwesomeIcon
               icon={faChevronUp}

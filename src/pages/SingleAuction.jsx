@@ -33,11 +33,14 @@ const SingleAuction = () => {
 
   //get request for bid
   const getPlacedBid = () => {
-    axios.get("http://localhost:3000/posts").then((res) => {
-      // console.log(res.data);
-      setGetBid(res.data);
-      setReload(!reload);
-    });
+    axios
+      .get("http://localhost:3000/posts")
+      .then((res) => {
+        // console.log(res.data);
+        setGetBid(res.data);
+        setReload(!reload);
+      })
+      .catch((err) => console.log("Error:", err));
   };
 
   useEffect(() => {

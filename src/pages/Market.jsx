@@ -27,8 +27,6 @@ const Market = () => {
   const [price, setPrice] = useState(true); //price accordion
   const [artist, setArtist] = useState(true); //artist accordion
   const [value, setValue] = useState([2, 10]); //price range
-  const [editorial, setEditorial] = useState(true);
-  const [fashion, setFashion] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -65,7 +63,7 @@ const Market = () => {
   // FILTERS
   //filter by search input
   const handleSearch = () => {
-    const filtered = marketPlaceGrid.filter((product) =>
+    const filtered = marketProducts.filter((product) =>
       product.name
         .trim()
         .toLowerCase()
@@ -86,38 +84,76 @@ const Market = () => {
   const handleEditorial = (e) => {
     const forEditorial = "Editorials";
     const checked = e.target.checked;
-    setEditorial(!editorial);
+    const name = e.target.name.toLowerCase();
 
-    if (editorial && checked) {
+    if (checked && name === forEditorial.toLowerCase()) {
       const filteredByEditorial = marketProducts.filter(
-        (products) => products.category === forEditorial
+        (products) =>
+          products.category.toLowerCase() === forEditorial.toLowerCase()
       );
       setMarketProducts(filteredByEditorial);
     } else {
-      setReload(!reload);
-      setCheckAli(false);
-      setCheckCleara(false);
-      setValue([2, 10]);
-      setSearchValue("");
+      setMarketProducts(marketPlaceGrid);
     }
   };
 
   const handleFashion = (e) => {
-    const checked = e.target.checked;
     const forFashion = "Fashion";
-    setFashion(!fashion);
-
-    if (fashion && checked) {
+    const checked = e.target.checked;
+    const name = e.target.name.toLowerCase();
+    if (checked && name === forFashion.toLowerCase()) {
       const filteredByFashion = marketProducts.filter(
-        (products) => products.category === forFashion
+        (products) =>
+          products.category.toLowerCase() === forFashion.toLowerCase()
       );
       setMarketProducts(filteredByFashion);
     } else {
-      setReload(!reload);
-      setCheckAli(false);
-      setCheckCleara(false);
-      setValue([2, 10]);
-      setSearchValue("");
+      setMarketProducts(marketPlaceGrid);
+    }
+  };
+
+  const handleOptics = (e) => {
+    const forOptics = "Optics";
+    const checked = e.target.checked;
+    const name = e.target.name.toLowerCase();
+    if (checked && name === forOptics.toLowerCase()) {
+      const filteredByOptics = marketProducts.filter(
+        (products) =>
+          products.category.toLowerCase() === forOptics.toLowerCase()
+      );
+      setMarketProducts(filteredByOptics);
+    } else {
+      setMarketProducts(marketPlaceGrid);
+    }
+  };
+
+  const handleArtMuseum = (e) => {
+    const forMuseum = "Museum";
+    const checked = e.target.checked;
+    const name = e.target.name.toLowerCase();
+    if (checked && name === forMuseum.toLowerCase()) {
+      const filteredByMuseum = marketProducts.filter(
+        (products) =>
+          products.category.toLowerCase() === forMuseum.toLowerCase()
+      );
+      setMarketProducts(filteredByMuseum);
+    } else {
+      setMarketProducts(marketPlaceGrid);
+    }
+  };
+
+  const handleNature = (e) => {
+    const forNature = "Nature";
+    const checked = e.target.checked;
+    const name = e.target.name.toLowerCase();
+    if (checked && name === forNature.toLowerCase()) {
+      const filteredByNature = marketProducts.filter(
+        (products) =>
+          products.category.toLowerCase() === forNature.toLowerCase()
+      );
+      setMarketProducts(filteredByNature);
+    } else {
+      setMarketProducts(marketPlaceGrid);
     }
   };
 
@@ -230,17 +266,17 @@ const Market = () => {
               <input
                 type="text"
                 onChange={(e) => setSearchValue(e.target.value)}
-                onKeyUp={handleSearch}
+                onKeyUp={() => handleSearch()}
                 value={searchValue}
                 name="search"
                 id="search"
                 autoComplete="off"
                 autoFocus
                 placeholder="Search by name"
-                className="marketplace-search bg-artsy-searchGrey placeholder:text-lg focus:outline-none font-medium text-2xl max-[1000px]:text-xl w-full"
+                className="marketplace-search bg-artsy-searchGrey placeholder:text-base lg:placeholder:text-lg focus:outline-none font-medium text-2xl max-[1000px]:text-xl w-full"
               />
               <FontAwesomeIcon
-                onClick={clearSearchValue}
+                onClick={() => clearSearchValue()}
                 icon={faClose}
                 className={
                   searchValue ? "block text-2xl cursor-pointer" : "hidden"
@@ -260,7 +296,7 @@ const Market = () => {
                   type="button"
                   title="Refresh"
                   className={marketProducts.length < 1 ? "block" : "hidden"}
-                  onClick={handleRefresh}
+                  onClick={() => handleRefresh()}
                 >
                   <FontAwesomeIcon
                     icon={faRefresh}
@@ -274,7 +310,7 @@ const Market = () => {
                 name="sort"
                 id="sort"
                 defaultValue="sortAll"
-                onChange={handleSort}
+                onChange={() => handleSort()}
                 className="h-[60px] border border-artsy-black px-2 w-full max-w-[190px] focus:outline-none font-normal text-[18px] rounded-[8px] cursor-pointer"
               >
                 <option value="sortAll" disabled>
@@ -296,8 +332,8 @@ const Market = () => {
                   name="filter"
                   id="filter"
                   defaultValue={"all"}
-                  className="filter-select h-[60px] px-2 w-full max-w-[117px] focus:outline-none font-normal text-[16px] rounded-[8px] cursor-pointer"
-                  onChange={handleFilterOnMobile}
+                  className="filter-select h-[60px] px-2 w-full max-w-[117px] focus:outline-none font-normal text-[15px] rounded-[8px] cursor-pointer"
+                  onChange={() => handleFilterOnMobile()}
                 >
                   <option value="all" disabled>
                     Filter Items
@@ -309,7 +345,7 @@ const Market = () => {
                   type="button"
                   title="Refresh"
                   className={marketProducts.length < 1 ? "block" : "hidden"}
-                  onClick={handleRefresh}
+                  onClick={() => handleRefresh()}
                 >
                   <FontAwesomeIcon
                     icon={faRefresh}
@@ -324,8 +360,8 @@ const Market = () => {
                 name="sort"
                 id="sort"
                 defaultValue={"sort-all"}
-                className="sort-select h-[60px] px-2 w-full max-w-[90px] focus:outline-none font-normal text-[16px] rounded-[8px] cursor-pointer"
-                onChange={handleSort}
+                className="sort-select h-[60px] px-2 w-full max-w-[90px] focus:outline-none font-normal text-[15px] rounded-[8px] cursor-pointer"
+                onChange={() => handleSort()}
               >
                 <option value="sort-all" disabled>
                   Sort By
@@ -389,8 +425,8 @@ const Market = () => {
                           type="checkbox"
                           name="editorials"
                           id="editorials"
-                          value={editorial}
-                          onChange={handleEditorial}
+                          // value={editorial}
+                          onChange={(e) => handleEditorial(e)}
                           className="accent-artsy-searchGrey w-[26px] h-[26px] max-[1000px]:w-[20px] focus:outline-none"
                         />
                         <span className="font-normal text-[24px] max-[1000px]:text-[18px]">
@@ -407,8 +443,7 @@ const Market = () => {
                           type="checkbox"
                           name="fashion"
                           id="fashion"
-                          value={fashion}
-                          onChange={handleFashion}
+                          onChange={(e) => handleFashion(e)}
                           className="accent-artsy-searchGrey w-[26px] h-[26px] max-[1000px]:w-[20px] focus:outline-none"
                         />
                         <span className="font-normal text-[24px] max-[1000px]:text-[18px]">
@@ -425,26 +460,11 @@ const Market = () => {
                           type="checkbox"
                           name="optics"
                           id="optics"
+                          onChange={(e) => handleOptics(e)}
                           className="accent-artsy-searchGrey w-[26px] h-[26px] max-[1000px]:w-[20px] focus:outline-none"
                         />
                         <span className="font-normal text-[24px] max-[1000px]:text-[18px]">
                           Optics
-                        </span>
-                      </label>
-                    </li>
-                    <li className="lg:hidden flex items-center">
-                      <label
-                        htmlFor="art"
-                        className="flex items-center gap-4 cursor-pointer"
-                      >
-                        <input
-                          type="checkbox"
-                          name="art"
-                          id="art"
-                          className="accent-artsy-searchGrey w-[26px] h-[26px] max-[1000px]:w-[20px] focus:outline-none"
-                        />
-                        <span className="font-normal text-[24px] max-[1000px]:text-[18px]">
-                          Art
                         </span>
                       </label>
                     </li>
@@ -457,6 +477,7 @@ const Market = () => {
                           type="checkbox"
                           name="museum"
                           id="museum"
+                          onChange={(e) => handleArtMuseum(e)}
                           className="accent-artsy-searchGrey w-[26px] h-[26px] max-[1000px]:w-[20px] focus:outline-none"
                         />
                         <span className="font-normal text-[24px] max-[1000px]:text-[18px]">
@@ -473,6 +494,7 @@ const Market = () => {
                           type="checkbox"
                           name="nature"
                           id="nature"
+                          onChange={(e) => handleNature(e)}
                           className="accent-artsy-searchGrey w-[26px] h-[26px] max-[1000px]:w-[20px] focus:outline-none"
                         />
                         <span className="font-normal text-[24px] max-[1000px]:text-[18px]">

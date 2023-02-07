@@ -90,6 +90,7 @@ const Cart = () => {
       <div className="flex flex-col items-center justify-between min-h-[110px] md:min-h-[160px]">
         <button
           type="button"
+          title="Remove item"
           className="flex items-center justify-center w-full"
           onClick={() => dispatch(removeItem(item))}
         >
@@ -107,9 +108,9 @@ const Cart = () => {
   ));
 
   return (
-    <main className="flex flex-col justify-between px-4 md:px-8 w-full min-h-screen">
-      <section className="hidden md:block">Navs</section>
-      <section className="flex-1 flex flex-col items-start justify-between w-full">
+    <main className="flex flex-col justify-between px-4 md:px-8 w-full min-h-screen my-4">
+      {/* <section className="hidden md:block">Navs</section> */}
+      <section className="flex-1 flex flex-col items-start gap-6 w-full">
         {eachItem}
       </section>
 
