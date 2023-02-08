@@ -253,37 +253,67 @@ const Home = () => {
               <hr className="w-full max-w-[660px] mx-auto" />
             </div>
 
-            <div className="">
-              <div
-                style={{
-                  backgroundColor:
-                    "linear-gradient(0deg, rgba(0, 0, 0, 0.52), rgba(0, 0, 0, 0.52)), linear-gradient(104.57deg, rgba(0, 0, 0, 0.1) 21.03%, rgba(0, 0, 0, 0.2) 56.5%, rgba(0, 0, 0, 0.2) 93.84%)",
-                  backgroundImage: `url(${exhibite[currentIndex].url})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "top",
-                  backgroundRepeat: "no-repeat",
-                  width: "100%",
-                  position: "relative",
-                }}
-                className="min-h-[350px] md:min-h-[546px] flex item-center justify-center duration-500 ease-in-out md:items-end md:justify-start p-8"
-              >
-                <div className="flex flex-row items-center gap-x-4 w-full max-w-[705px]">
-                  <h1 className="hidden md:block font-normal text-[40px] md:text-[70px]">
-                    {exhibite[currentIndex].sn}
+            <div
+              style={{
+                backgroundColor:
+                  "linear-gradient(0deg, rgba(0, 0, 0, 0.52), rgba(0, 0, 0, 0.52)), linear-gradient(104.57deg, rgba(0, 0, 0, 0.1) 21.03%, rgba(0, 0, 0, 0.2) 56.5%, rgba(0, 0, 0, 0.2) 93.84%)",
+                backgroundImage: `url(${exhibite[currentIndex].url})`,
+                backgroundSize: "cover",
+                backgroundPosition: "top",
+                backgroundRepeat: "no-repeat",
+                width: "100%",
+                position: "relative",
+              }}
+              className="min-h-[350px] md:min-h-[546px] flex item-center justify-center duration-500 ease-in-out md:items-end md:justify-start p-8"
+            >
+              <div className="flex flex-row items-end md:items-center gap-x-4 w-full max-w-[705px]">
+                <h1 className="hidden md:block font-normal text-[40px] md:text-[70px]">
+                  {exhibite[currentIndex].sn}
+                </h1>
+                <div className="flex flex-col gap-y-2 justify-start">
+                  <h1 className="font-normal text-[20px] md:text-[30px]">
+                    {exhibite[currentIndex].name}
                   </h1>
-                  <div className="flex flex-col gap-y-2 justify-start">
-                    <h1 className="font-normal text-[20px] md:text-[30px]">
-                      {exhibite[currentIndex].name}
-                    </h1>
-                    <p className="font-medium text-[10px] md:text-[16px]">
-                      {exhibite[currentIndex].about}
-                    </p>
-                    <small className="font-normal text-[12px] md:text-[14px]">
-                      {exhibite[currentIndex].starts}
-                    </small>
-                  </div>
+                  <p className="font-medium text-[10px] md:text-[16px]">
+                    {exhibite[currentIndex].about}
+                  </p>
+                  <small className="font-normal text-[12px] md:text-[14px]">
+                    {exhibite[currentIndex].starts}
+                  </small>
                 </div>
               </div>
+              <button
+                type="button"
+                className="focus:outline-0 absolute block md:hidden left-[20px] top-[45%]"
+                onClick={() => prevSlide()}
+              >
+                <FontAwesomeIcon
+                  icon={faChevronLeft}
+                  style={{
+                    background: "rgba(255, 255, 255,0.2)",
+                    boxShadow:
+                      "7.77035px 7.77035px 11.6555px rgba(0, 0, 0, 0.15)",
+                    backdropFilter: "blur(7.77035px)",
+                  }}
+                  className="border p-2 rounded-full text-base"
+                />
+              </button>
+              <button
+                type="button"
+                className="focus:outline-0 absolute block md:hidden right-[20px] top-[45%]"
+                onClick={() => nextSlide()}
+              >
+                <FontAwesomeIcon
+                  icon={faChevronRight}
+                  style={{
+                    background: "rgba(255, 255, 255,0.2)",
+                    boxShadow:
+                      "7.77035px 7.77035px 11.6555px rgba(0, 0, 0, 0.15)",
+                    backdropFilter: "blur(7.77035px)",
+                  }}
+                  className="border p-2 rounded-full text-base"
+                />
+              </button>
             </div>
 
             <div className="hidden md:flex items-center justify-center gap-4 self-end w-full h-[70px] max-w-[160px]">

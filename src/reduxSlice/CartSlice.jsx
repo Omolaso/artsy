@@ -22,7 +22,6 @@ const cartSlice = createSlice({
         existing.amount = existing.amount + payload.amount;
       } else {
         state.cartItems.unshift(payload);
-        state.cartQuantity = state.cartQuantity + 1;
       }
     },
 
@@ -30,7 +29,6 @@ const cartSlice = createSlice({
       const existing = state.cartItems.find((item) => item.id === payload.id);
       if (existing) {
         existing.amount = existing.amount + 1;
-        state.cartQuantity = state.cartQuantity + 1;
       }
     },
 
@@ -38,16 +36,18 @@ const cartSlice = createSlice({
       const existing = state.cartItems.find((item) => item.id === payload.id);
       if (existing) {
         existing.amount = existing.amount - 1;
-        state.cartQuantity = state.cartQuantity - 1;
       }
     },
 
     totalInCart: (state) => {
+      let totalCartQuantity = 0;
+      let totalFee = 0;
       state.cartItems.forEach((item) => {
-        let totalFee = item.amount * item.value;
-        console.log(item.amount, item.value);
-        state.total += totalFee;
+        totalCartQuantity += item.amount;
+        totalFee += item.amount * item.value;
       });
+      state.cartQuantity = totalCartQuantity;
+      state.total = totalFee;
     },
   },
 });
@@ -62,4 +62,4 @@ export const {
   totalInCart,
 } = cartSlice.actions;
 
-export default cartSlice.reducer; // exporting the reducer from the entire cartslice
+export default cartSlice.reducer; // exporting the reducer (i.e entire cartslice)

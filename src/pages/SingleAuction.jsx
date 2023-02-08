@@ -97,7 +97,7 @@ const SingleAuction = () => {
               <i className="font-medium text-[20px] text-artsy-HR-bg">
                 Creator: {creator}
               </i>
-              <div className="styled-bordr w-full max-w-md border border-artsy-linearGradient-brown flex flex-row items-center p-4 rounded-[25px]">
+              <div className="w-full max-w-md border border-artsy-linearGradient-brown flex flex-row items-center p-4 rounded-[25px]">
                 <input
                   type="text"
                   value={bid}
@@ -106,7 +106,7 @@ const SingleAuction = () => {
                   placeholder="Place a bid"
                   className="text-[22px] placeholder:text-[22px] text-artsy-text-greyBlack focus:outline-0 flex-1"
                 />
-                <button onClick={placeBid}>
+                <button onClick={() => placeBid()}>
                   <FontAwesomeIcon icon={faPaperPlane} />
                 </button>
               </div>
@@ -169,7 +169,7 @@ const SingleAuction = () => {
               />
               <button
                 className="text-[16px] text-artsy-background-white"
-                onClick={placeBid}
+                onClick={() => placeBid()}
               >
                 <FontAwesomeIcon icon={faPaperPlane} />
               </button>

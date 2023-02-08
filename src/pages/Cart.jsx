@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,19 +7,13 @@ import {
   removeItem,
   incrementInCart,
   decrementInCart,
-  totalInCart,
 } from "../reduxSlice/CartSlice";
 
 const Cart = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { cartQuantity, total, cartItems } = useSelector((store) => store.cart);
-  const shippingFee = cartQuantity * 2;
-
-  useEffect(() => {
-    dispatch(totalInCart());
-    console.log(total);
-  }, [cartItems]);
+  const shippingFee = cartItems.length * 2;
 
   if (cartQuantity < 1) {
     return (

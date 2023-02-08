@@ -86,15 +86,6 @@ code {
 }
 
 /*AUCTION PAGE STYLED BORDER*/
-.styled-border {
-  border-image: linear-gradient(to left, #78a3ad, #c05609) 30;
-  border-image-slice: 30%;
-  border-width: 2px;
-  width: 100%;
-  max-width: 410px;
-}
-
 .auction-input {
   background: transparent;
 }
-
