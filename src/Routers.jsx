@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { url } from "./URLs";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRefresh } from "@fortawesome/free-solid-svg-icons";
+import { useSelector } from "react-redux";
 
 const SharedLayout = React.lazy(() => import("./pages/SharedLayout"));
 const Home = React.lazy(() => import("./pages/Home"));
@@ -16,8 +17,10 @@ const SingleSearch = React.lazy(() => import("./pages/SingleSearch"));
 const Cart = React.lazy(() => import("./pages/Cart"));
 const Shipping = React.lazy(() => import("./pages/Shipping"));
 const Notifications = React.lazy(() => import("./pages/Notification"));
+const ProtectedRoute = React.lazy(() => import("./pages/ProtectedRoute"));
 
 const Routers = () => {
+  const { cartItems } = useSelector((store) => store.cart);
   return (
     <>
       <Suspense
@@ -36,7 +39,14 @@ const Routers = () => {
             <Route path={url.auction} element={<Auction />} />
             <Route path={url.drops} element={<Drops />} />
             <Route path={url.cart} element={<Cart />} />
-            <Route path={url.shipping} element={<Shipping />} />
+            <Route
+              path={url.shipping}
+              element={
+                <ProtectedRoute cartItems={cartItems}>
+                  <Shipping cartItems={cartItems} />
+                </ProtectedRoute>
+              }
+            />
             <Route path={url.notify} element={<Notifications />} />
             <Route path={url.search} element={<Search />} />
           </Route>

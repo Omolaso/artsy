@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,6 +7,7 @@ import {
   removeItem,
   incrementInCart,
   decrementInCart,
+  totalInCart,
 } from "../reduxSlice/CartSlice";
 
 const Cart = () => {
@@ -14,6 +15,11 @@ const Cart = () => {
   const navigate = useNavigate();
   const { cartQuantity, total, cartItems } = useSelector((store) => store.cart);
   const shippingFee = cartQuantity * 2;
+
+  useEffect(() => {
+    dispatch(totalInCart());
+    console.log(total);
+  }, [cartItems]);
 
   if (cartQuantity < 1) {
     return (
@@ -37,7 +43,7 @@ const Cart = () => {
         <img
           src={item.url || item.imgUrl}
           alt={item.name}
-          className="max-w-[126px] md:max-w-[250px]"
+          className="max-w-[126px] md:max-w-[250px] rounded-lg"
         />
         <div className="flex flex-col gap-2">
           <i className="block md:hidden font-normal text-[16px] text-artsy-cartTextColor">
@@ -151,7 +157,7 @@ const Cart = () => {
             </div>
 
             <div className="flex items-center justify-between w-full font-normal text-[20px] md:text-[28px]">
-              <p className="text-artsy-cartTextColor">Total:</p>
+              <p className="text-artsy-cartTextColor">Product total:</p>
               <p className="text-artsy-black">${total}</p>
             </div>
           </div>

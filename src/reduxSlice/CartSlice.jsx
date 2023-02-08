@@ -4,7 +4,6 @@ const initialState = {
   cartItems: [],
   cartQuantity: 0,
   total: 0,
-  isLoading: true,
 };
 
 const cartSlice = createSlice({
@@ -27,20 +26,11 @@ const cartSlice = createSlice({
       }
     },
 
-    increment: (state, { payload }) => {
-      payload.amount = payload.amount + 1;
-      //   console.log(payload.amount);
-    },
-
-    decrement: (state, { payload }) => {
-      if (payload.amount === 1) return;
-      payload.amount = payload.amount - 1;
-    },
-
     incrementInCart: (state, { payload }) => {
       const existing = state.cartItems.find((item) => item.id === payload.id);
       if (existing) {
         existing.amount = existing.amount + 1;
+        state.cartQuantity = state.cartQuantity + 1;
       }
     },
 
@@ -48,7 +38,16 @@ const cartSlice = createSlice({
       const existing = state.cartItems.find((item) => item.id === payload.id);
       if (existing) {
         existing.amount = existing.amount - 1;
+        state.cartQuantity = state.cartQuantity - 1;
       }
+    },
+
+    totalInCart: (state) => {
+      state.cartItems.forEach((item) => {
+        let totalFee = item.amount * item.value;
+        console.log(item.amount, item.value);
+        state.total += totalFee;
+      });
     },
   },
 });
@@ -58,10 +57,9 @@ const cartSlice = createSlice({
 export const {
   removeItem,
   addItem,
-  increment,
-  decrement,
   incrementInCart,
   decrementInCart,
+  totalInCart,
 } = cartSlice.actions;
 
 export default cartSlice.reducer; // exporting the reducer from the entire cartslice

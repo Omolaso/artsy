@@ -127,7 +127,7 @@ const Search = () => {
                   <img
                     src={product.url || product.imgUrl}
                     alt={product.name}
-                    className="h-[384px] lg:h-[280px] w-full"
+                    className="h-[384px] lg:h-[280px] w-full rounded-lg"
                   />
                   <h1 className="text-[18px] lg:text-[22px] font-medium lg:font-normal text-artsy-text-greyBlack">
                     {product.name}
