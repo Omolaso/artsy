@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { url } from "../URLs";
@@ -24,7 +24,7 @@ const Shipping = () => {
   const eachItem = cartItems.map((item) => (
     <article
       key={item.id}
-      className="flex flex-row items-center justify-between md:border-t border-t-0 border-artsy-cartBorder py-4 w-full"
+      className="flex flex-row items-center justify-between md:border-t border-t-0 border-artsy-cartBorder py-8 w-full"
     >
       <div className="flex items-center justify-center gap-5">
         <img
@@ -111,7 +111,8 @@ const Shipping = () => {
   return (
     <>
       {breadCrumb}
-      <main className="flex flex-row items-center gap-16 w-full px-4 md:px-8 my-4">
+
+      <main className="flex flex-row items-start gap-16 w-full px-4 md:px-8 mb-4">
         <form
           onSubmit={(e) => handleSubmit(e)}
           className="flex-1 flex flex-col gap-6"
@@ -119,7 +120,7 @@ const Shipping = () => {
           <div className="flex flex-col gap-3">
             <label
               htmlFor="email"
-              className="flex flex-col gap-2 md:gap-4 text-[18px] md:text-[26px] font-normal text-artsy-cartTextColor"
+              className="flex flex-col gap-2 text-[18px] md:text-[26px] font-normal text-artsy-cartTextColor"
             >
               Your Email
               <input
@@ -127,24 +128,119 @@ const Shipping = () => {
                 name="email"
                 id="email"
                 autoComplete="off"
-                placeholder="tobifrancisadesanya@gmail.com"
+                placeholder="johndoe@gmail.com"
                 className="border border-artsy-cartBorder placeholder:text-[16px] md:placeholder:text-[26px] text-artsy-text-black rounded-lg focus:outline-0 px-4 bg-artsy-searchGrey min-h-[50px] md:min-h-[75px]"
               />
             </label>
 
             <label
               htmlFor="checkBox"
-              className="flex flex-row gap-2 text-artsy-cartBorder text-[13px] md:text-[20px]"
+              className="flex flex-row gap-2 text-artsy-cartBorder text-[13px] md:text-[18px]"
             >
               <input
                 type="checkbox"
                 name="checkBox"
                 id="checkBox"
-                className="min-h-[16px] md:min-h-[26px] min-w-[16px] md:min-w-[26px] bg-artsy-searchGrey accent-artsy-text-black"
+                className="min-h-[16px] md:min-h-[22px] min-w-[16px] md:min-w-[22px] bg-artsy-searchGrey accent-artsy-text-black"
               />
               Get updates about new drops & exclusive offers
             </label>
           </div>
+
+          <label
+            htmlFor="fullName"
+            className="flex flex-col gap-2 text-[18px] md:text-[26px] font-normal text-artsy-cartTextColor"
+          >
+            Your full name
+            <input
+              type="text"
+              name="fullName"
+              id="fullName"
+              autoComplete="off"
+              placeholder="John Doe"
+              className="border border-artsy-cartBorder placeholder:text-[16px] md:placeholder:text-[26px] text-artsy-text-black rounded-lg focus:outline-0 px-4 bg-artsy-searchGrey min-h-[50px] md:min-h-[75px]"
+            />
+          </label>
+
+          <label
+            htmlFor="wallet"
+            className="flex flex-col gap-2 text-[18px] md:text-[26px] font-normal text-artsy-cartTextColor"
+          >
+            Choose a wallet
+            <select
+              name="wallet"
+              id="wallet"
+              defaultValue=""
+              className="filter-select cursor-pointer text-[18px] md:text-[26px] font-normal border border-artsy-cartBorder text-artsy-text-black rounded-lg focus:outline-0 px-4 bg-artsy-searchGrey min-h-[50px] md:min-h-[75px]"
+            >
+              <option value="MetaMask">MetaMask</option>
+              <option value="TrustWallet">Trust Wallet</option>
+            </select>
+          </label>
+
+          <label
+            htmlFor="city"
+            className="flex flex-col gap-2 text-[18px] md:text-[26px] font-normal text-artsy-cartTextColor"
+          >
+            City
+            <select
+              name="city"
+              id="city"
+              defaultValue=""
+              className="filter-select cursor-pointer text-[18px] md:text-[26px] font-normal border border-artsy-cartBorder text-artsy-text-black rounded-lg focus:outline-0 px-4 bg-artsy-searchGrey min-h-[50px] md:min-h-[75px]"
+            >
+              <option value="Lagos">Lagos</option>
+              <option value="Abuja">Abuja</option>
+            </select>
+          </label>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+            <label
+              htmlFor="country"
+              className="flex flex-col gap-2 text-[18px] md:text-[26px] font-normal text-artsy-cartTextColor"
+            >
+              Country
+              <select
+                name="country"
+                id="country"
+                defaultValue=""
+                className="filter-select cursor-pointer text-[18px] md:text-[26px] font-normal border border-artsy-cartBorder text-artsy-text-black rounded-lg focus:outline-0 px-4 bg-artsy-searchGrey min-h-[50px] md:min-h-[75px]"
+              >
+                <option value="Nigeria">Nigeria</option>
+                <option value="Ghana">Ghana</option>
+              </select>
+            </label>
+
+            <label
+              htmlFor="posterCode"
+              className="flex flex-col gap-2 text-[18px] md:text-[26px] font-normal text-artsy-cartTextColor"
+            >
+              Poster Code
+              <input
+                type="number"
+                name="posterCode"
+                id="posterCode"
+                autoComplete="off"
+                placeholder="101001"
+                className="border border-artsy-cartBorder placeholder:text-[16px] md:placeholder:text-[26px] text-artsy-text-black rounded-lg focus:outline-0 px-4 bg-artsy-searchGrey min-h-[50px] md:min-h-[75px]"
+              />
+            </label>
+          </div>
+
+          <label
+            htmlFor="phoneNumber"
+            className="flex flex-col gap-2 text-[18px] md:text-[26px] font-normal text-artsy-cartTextColor"
+          >
+            Phone Number
+            <input
+              type="tel"
+              name="phoneNumber"
+              id="phoneNumber"
+              autoComplete="off"
+              placeholder="08145485635"
+              className="border border-artsy-cartBorder placeholder:text-[16px] md:placeholder:text-[26px] text-artsy-text-black rounded-lg focus:outline-0 px-4 bg-artsy-searchGrey min-h-[50px] md:min-h-[75px]"
+            />
+          </label>
 
           <button
             type="submit"
@@ -152,6 +248,13 @@ const Shipping = () => {
           >
             Proceed to payment
           </button>
+
+          <Link
+            to={url.cart}
+            className="underline hover:no-underline w-full max-w-[180px] text-center mx-auto text-artsy-linkBlue font-medium text-[20px] md:text-[28px]"
+          >
+            Back to cart
+          </Link>
         </form>
 
         <section className="flex-1 hidden lg:flex flex-col gap-4">
