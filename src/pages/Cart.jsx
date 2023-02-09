@@ -109,7 +109,6 @@ const Cart = () => {
 
   return (
     <main className="flex flex-col justify-between px-4 md:px-8 w-full min-h-screen my-4">
-      {/* <section className="hidden md:block">Navs</section> */}
       <section className="flex-1 flex flex-col items-start gap-6 w-full">
         {eachItem}
       </section>

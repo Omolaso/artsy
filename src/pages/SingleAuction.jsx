@@ -59,7 +59,7 @@ const SingleAuction = () => {
             Auction
           </button>
           <span>›</span>
-          <h2 className=" cursor-text">Live Bid</h2>
+          <h2 className="cursor-text">Live Bid</h2>
         </section>
 
         <section className="hidden lg:grid grid-cols-2 border h-[75vh]">

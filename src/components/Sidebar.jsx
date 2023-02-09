@@ -45,12 +45,12 @@ const Sidebar = ({ sidebarOpen, setSidebar }) => {
   };
 
   return (
-    <main className="w-full h-[10vh] overflow-y-hidden">
+    <main className="w-full h-[10vh] overflow-y-hidden relative">
       <section
         className={
           sidebarOpen
             ? "hidden"
-            : "flex items-center justify-between w-full h-full px-4"
+            : "flex items-center justify-between w-full h-[10vh] px-4 bg-artsy-background-white shadow-sm shadow-artsy-black fixed top-0 z-50"
         }
       >
         <button onClick={() => toggleSidebar()}>

@@ -15,8 +15,9 @@ const Drops = React.lazy(() => import("./pages/Drops"));
 const Search = React.lazy(() => import("./pages/Search"));
 const SingleSearch = React.lazy(() => import("./pages/SingleSearch"));
 const Cart = React.lazy(() => import("./pages/Cart"));
-const Shipping = React.lazy(() => import("./pages/Shipping"));
 const Notifications = React.lazy(() => import("./pages/Notification"));
+const Shipping = React.lazy(() => import("./pages/Shipping"));
+const Payment = React.lazy(() => import("./pages/Payment"));
 const ProtectedRoute = React.lazy(() => import("./pages/ProtectedRoute"));
 
 const Routers = () => {
@@ -44,6 +45,14 @@ const Routers = () => {
               element={
                 <ProtectedRoute cartItems={cartItems}>
                   <Shipping cartItems={cartItems} />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path={url.payment}
+              element={
+                <ProtectedRoute cartItems={cartItems}>
+                  <Payment cartItems={cartItems} />
                 </ProtectedRoute>
               }
             />

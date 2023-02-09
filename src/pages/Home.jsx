@@ -284,7 +284,7 @@ const Home = () => {
               </div>
               <button
                 type="button"
-                className="focus:outline-0 absolute block md:hidden left-[20px] top-[45%]"
+                className="focus:outline-0 absolute block md:hidden left-[5px] top-[45%]"
                 onClick={() => prevSlide()}
               >
                 <FontAwesomeIcon
@@ -300,7 +300,7 @@ const Home = () => {
               </button>
               <button
                 type="button"
-                className="focus:outline-0 absolute block md:hidden right-[20px] top-[45%]"
+                className="focus:outline-0 absolute block md:hidden right-[5px] top-[45%]"
                 onClick={() => nextSlide()}
               >
                 <FontAwesomeIcon

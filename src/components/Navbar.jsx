@@ -20,8 +20,8 @@ const Navbar = ({ sidebarOpen, setSidebar }) => {
   };
 
   return (
-    <main className="flex items-center justify-center md:h-[12vh] w-full">
-      <section className="hidden md:flex items-center justify-between w-full md:px-8">
+    <main className="flex items-center justify-center md:min-h-[12vh] w-full relative">
+      <section className="hidden md:flex items-center justify-between w-full md:px-8 shadow-sm shadow-artsy-HR-bg min-h-[10vh] lg:min-h-[11vh] bg-artsy-background-white z-50 fixed top-0">
         <div className="font-bold text-[32px] max-[1000px]:text-[28px] text-artsy-text-black">
           <button type="button" onClick={() => backToLandingPage()}>
             ARTSY.
