@@ -266,7 +266,10 @@ const Market = () => {
               <input
                 type="text"
                 onChange={(e) => setSearchValue(e.target.value)}
-                onKeyUp={() => handleSearch()}
+                onKeyUp={() => {
+                  !searchValue ? setReload(!reload) : null;
+                  handleSearch();
+                }}
                 value={searchValue}
                 name="search"
                 id="search"
