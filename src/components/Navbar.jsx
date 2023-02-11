@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { url } from "../URLs";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 import cartIcon from "../images/utils/cartIcon.svg";
@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 
 const Navbar = ({ sidebarOpen, setSidebar }) => {
   const { cartQuantity } = useSelector((store) => store.cart);
+  const [fixedNav, setFixedNav] = useState(false);
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
@@ -19,9 +20,28 @@ const Navbar = ({ sidebarOpen, setSidebar }) => {
     navigate(url.cart);
   };
 
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      if (
+        document.documentElement.scrollTop > 10 ||
+        document.body.scrollTop > 10
+      ) {
+        setFixedNav(true);
+      } else {
+        setFixedNav(false);
+      }
+    });
+  }, [fixedNav]);
+
   return (
     <main className="flex items-center justify-center md:min-h-[12vh] w-full relative">
-      <section className="hidden md:flex items-center justify-between w-full md:px-8 shadow-sm shadow-artsy-HR-bg min-h-[10vh] lg:min-h-[11vh] bg-artsy-background-white z-50 fixed top-0">
+      <section
+        className={
+          fixedNav
+            ? "hidden md:flex items-center justify-between w-full md:px-8 shadow-sm duration-500 ease-in-out shadow-artsy-HR-bg min-h-[10vh] lg:min-h-[11vh] bg-artsy-background-white z-50 fixed top-0"
+            : "hidden md:flex items-center justify-between w-full md:px-8 shadow-none duration-500 ease-in-out shadow-artsy-HR-bg min-h-[10vh] lg:min-h-[11vh] bg-artsy-background-white z-50 fixed top-0"
+        }
+      >
         <div className="font-bold text-[32px] max-[1000px]:text-[28px] text-artsy-text-black">
           <button type="button" onClick={() => backToLandingPage()}>
             ARTSY.

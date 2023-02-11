@@ -29,6 +29,17 @@ import Ginger from "./images/drops/ginger.png";
 import Sink from "./images/drops/sink.png";
 import Wrap from "./images/drops/wrap.png";
 import heart from "./images/utils/heart.svg";
+import metaMask from "./images/wallets/MetaMask.png";
+import walletConnect from "./images/wallets/WalletConnect.png";
+import coinbase from "./images/wallets/Coinbase.png";
+import phantom from "./images/wallets/Phantom.png";
+
+export const wallets = [
+  { name: "MetaMask", imgUrl: `${metaMask}` },
+  { name: "WalletConnect", imgUrl: `${walletConnect}` },
+  { name: "Coinbase", imgUrl: `${coinbase}` },
+  { name: "Phantom", imgUrl: `${phantom}` },
+];
 
 export const homepageSlide = [
   { name: "Young Guy", id: 1, url: `${homepageSlide1}` },

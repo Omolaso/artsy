@@ -11,5 +11,6 @@ export const url = {
   cart: "/yourcart",
   notify: "/notifications",
   shipping: "/shippingDetails",
-  payment: "/paymentDetails",
+  payment: "/paymentdetails",
+  completed: "/thankYou",
 };

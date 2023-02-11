@@ -18,6 +18,7 @@ const Cart = React.lazy(() => import("./pages/Cart"));
 const Notifications = React.lazy(() => import("./pages/Notification"));
 const Shipping = React.lazy(() => import("./pages/Shipping"));
 const Payment = React.lazy(() => import("./pages/Payment"));
+const Completed = React.lazy(() => import("./pages/Completed"));
 const ProtectedRoute = React.lazy(() => import("./pages/ProtectedRoute"));
 
 const Routers = () => {
@@ -60,6 +61,7 @@ const Routers = () => {
             <Route path={url.search} element={<Search />} />
           </Route>
 
+          <Route path={url.completed} element={<Completed />} />
           <Route path={url.singleAuction} element={<SingleAuction />} />
           <Route path={url.singleSearch} element={<SingleSearch />} />
         </Routes>

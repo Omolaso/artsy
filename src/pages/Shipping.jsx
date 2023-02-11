@@ -18,7 +18,7 @@ const Shipping = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate("/paymentDetails");
+    navigate(url.payment);
   };
 
   const eachItem = cartItems.map((item) => (
@@ -95,7 +95,7 @@ const Shipping = () => {
   ));
 
   const breadCrumb = (
-    <section className="flex flex-row items-center justify-start text-[20px] md:text-[24px] font-medium gap-2 min-h-[10vh] px-4 md:px-8">
+    <section className="flex flex-row items-center justify-start text-[18px] md:text-[24px] font-medium gap-2 min-h-[10vh] px-4 md:px-8">
       <button
         type="button"
         className=" text-artsy-HR-bg hover:underline"

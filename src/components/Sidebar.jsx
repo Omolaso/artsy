@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { url } from "../URLs";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,6 +9,7 @@ import searchIcon from "../images/utils/searchIcon.svg";
 import { useSelector } from "react-redux";
 
 const Sidebar = ({ sidebarOpen, setSidebar }) => {
+  const [fixedNav, setFixedNav] = useState(false);
   const { cartQuantity } = useSelector((store) => store.cart);
   const navigate = useNavigate();
 
@@ -44,13 +45,28 @@ const Sidebar = ({ sidebarOpen, setSidebar }) => {
     setSidebar(!sidebarOpen);
   };
 
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      if (
+        document.documentElement.scrollTop > 3 ||
+        document.body.scrollTop > 3
+      ) {
+        setFixedNav(true);
+      } else {
+        setFixedNav(false);
+      }
+    });
+  }, [fixedNav]);
+
   return (
     <main className="w-full h-[10vh] overflow-y-hidden relative">
       <section
         className={
           sidebarOpen
             ? "hidden"
-            : "flex items-center justify-between w-full h-[10vh] px-4 bg-artsy-background-white border-b border-artsy-black fixed top-0 z-50"
+            : fixedNav
+            ? "flex items-center justify-between w-full min-h-[10vh] px-4 bg-artsy-background-white shadow-sm duration-500 ease-in-out shadow-artsy-HR-bg fixed top-0 z-50"
+            : "flex items-center justify-between w-full min-h-[10vh] px-4 bg-artsy-background-white shadow-none duration-500 ease-in-out shadow-artsy-HR-bg fixed top-0 z-50"
         }
       >
         <button onClick={() => toggleSidebar()}>
