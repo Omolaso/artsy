@@ -59,9 +59,9 @@ const Routers = () => {
             />
             <Route path={url.notify} element={<Notifications />} />
             <Route path={url.search} element={<Search />} />
+            <Route path={url.completed} element={<Completed />} />
           </Route>
 
-          <Route path={url.completed} element={<Completed />} />
           <Route path={url.singleAuction} element={<SingleAuction />} />
           <Route path={url.singleSearch} element={<SingleSearch />} />
         </Routes>

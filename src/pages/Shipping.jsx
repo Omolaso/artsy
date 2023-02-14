@@ -9,6 +9,8 @@ import {
   incrementInCart,
   decrementInCart,
 } from "../reduxSlice/CartSlice";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 const Shipping = () => {
   const dispatch = useDispatch();
@@ -16,10 +18,64 @@ const Shipping = () => {
   const { cartQuantity, total, cartItems } = useSelector((store) => store.cart);
   const shippingFee = cartItems.length * 2;
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    navigate(url.payment);
-  };
+  //form validation with formik
+  const phoneRegExp = /[0-9]{4}-[0-9]{3}-[0-9]{4}/;
+  const emailRegExp =
+    // eslint-disable-next-line no-useless-escape
+    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,4}))$/;
+
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      email: "",
+      phoneNumber: "",
+      walletType: "MetaMask",
+      city: "Lagos",
+      country: "Nigeria",
+      posterCode: "",
+    },
+
+    validationSchema: Yup.object({
+      name: Yup.string()
+        .min(1, "Must be at least 1 charactet")
+        .max(20, "Must be 20 characters or less")
+        .required("Required"),
+
+      email: Yup.string()
+        .matches(emailRegExp, "Invalid email address")
+        .required("Required"),
+
+      phoneNumber: Yup.string()
+        .required("Required")
+        .matches(
+          phoneRegExp,
+          "Phone number is not valid. Format: xxxx-xxx-xxxx"
+        )
+        .min(13, "Too short. Format: xxxx-xxx-xxxx")
+        .max(13, "Too long. Format: xxxx-xxx-xxxx"),
+
+      posterCode: Yup.string()
+        .required("Required")
+        .min(6, "Too short")
+        .max(6, "Too long"),
+    }),
+
+    onSubmit: (values) => {
+      // console.log(values);
+      window.localStorage.setItem("Shipping-Name", values.name);
+      window.localStorage.setItem("Shipping-Email", values.email);
+      window.localStorage.setItem("Shipping-PhoneNumber", values.phoneNumber);
+      window.localStorage.setItem("Shipping-GetUpdates", values.checkBox);
+      window.localStorage.setItem("Shipping-WalletType", values.walletType);
+      window.localStorage.setItem("Shipping-City", values.city);
+      window.localStorage.setItem("Shipping-Country", values.country);
+      window.localStorage.setItem("Shipping-PosterCode", values.posterCode);
+
+      navigate(url.payment);
+    },
+  });
+
+  //form validation with formik
 
   const eachItem = cartItems.map((item) => (
     <article
@@ -37,11 +93,23 @@ const Shipping = () => {
             {item.category ? item.category : "Editorials"}
           </i>
 
-          <h1 className="font-medium md:max-w-full max-w-[100px] text-[18px] md:text-[24px] text-artsy-black">
+          <h1
+            className={
+              item.name.length > 6
+                ? "font-medium md:max-w-full max-w-[100px] text-[16px] md:text-[18px] text-artsy-black"
+                : "font-medium md:max-w-full max-w-[100px] text-[18px] md:text-[24px] text-artsy-black"
+            }
+          >
             {item.name}
           </h1>
 
-          <i className="hidden md:flex items-center justify-start gap-2 font-medium text-[24px] text-artsy-cartTextColor">
+          <i
+            className={
+              item.creator.length > 5
+                ? "hidden md:flex items-center justify-start gap-2 font-medium text-[18px] text-artsy-cartTextColor"
+                : "hidden md:flex items-center justify-start gap-2 font-medium text-[24px] text-artsy-cartTextColor"
+            }
+          >
             {item.creator}
           </i>
           <h1 className="flex items-center justify-start text-artsy-cartTextColor gap-2 text-[20px] font-medium">
@@ -87,7 +155,13 @@ const Shipping = () => {
           />
         </button>
 
-        <h1 className="font-normal text-[20px] md:text-[36px] text-artsy-cartTextColor">
+        <h1
+          className={
+            item.value > 10
+              ? "font-normal text-[18px] md:text-[30px] text-artsy-cartTextColor"
+              : "font-normal text-[20px] md:text-[36px] text-artsy-cartTextColor"
+          }
+        >
           {item.value ? `$${item.value}` : `$${35}`}
         </h1>
       </div>
@@ -114,7 +188,7 @@ const Shipping = () => {
 
       <main className="flex flex-row items-start gap-16 w-full px-4 md:px-8 mb-4">
         <form
-          onSubmit={(e) => handleSubmit(e)}
+          onSubmit={formik.handleSubmit}
           className="flex-1 flex flex-col gap-6"
         >
           <div className="flex flex-col gap-3">
@@ -130,7 +204,13 @@ const Shipping = () => {
                 autoComplete="off"
                 placeholder="johndoe@gmail.com"
                 className="border border-artsy-cartBorder placeholder:text-[16px] md:placeholder:text-[26px] text-artsy-text-black rounded-lg focus:outline-0 px-4 bg-artsy-searchGrey min-h-[50px] md:min-h-[75px]"
+                {...formik.getFieldProps("email")}
               />
+              {formik.touched.email && formik.errors.email ? (
+                <div className="text-artsy-like-red font-medium text-[16px]">
+                  {formik.errors.email}
+                </div>
+              ) : null}
             </label>
 
             <label
@@ -142,6 +222,7 @@ const Shipping = () => {
                 name="checkBox"
                 id="checkBox"
                 className="min-h-[16px] md:min-h-[22px] min-w-[16px] md:min-w-[22px] bg-artsy-searchGrey accent-artsy-text-black"
+                {...formik.getFieldProps("checkBox")}
               />
               Get updates about new drops & exclusive offers
             </label>
@@ -159,7 +240,13 @@ const Shipping = () => {
               autoComplete="off"
               placeholder="John Doe"
               className="border border-artsy-cartBorder placeholder:text-[16px] md:placeholder:text-[26px] text-artsy-text-black rounded-lg focus:outline-0 px-4 bg-artsy-searchGrey min-h-[50px] md:min-h-[75px]"
+              {...formik.getFieldProps("name")}
             />
+            {formik.touched.name && formik.errors.name ? (
+              <div className="text-artsy-like-red font-medium text-[16px]">
+                {formik.errors.name}
+              </div>
+            ) : null}
           </label>
 
           <label
@@ -170,7 +257,7 @@ const Shipping = () => {
             <select
               name="wallet"
               id="wallet"
-              defaultValue=""
+              {...formik.getFieldProps("walletType")}
               className="filter-select cursor-pointer text-[18px] md:text-[26px] font-normal border border-artsy-cartBorder text-artsy-text-black rounded-lg focus:outline-0 px-4 bg-artsy-searchGrey min-h-[50px] md:min-h-[75px]"
             >
               <option value="MetaMask">MetaMask</option>
@@ -186,7 +273,7 @@ const Shipping = () => {
             <select
               name="city"
               id="city"
-              defaultValue=""
+              {...formik.getFieldProps("city")}
               className="filter-select cursor-pointer text-[18px] md:text-[26px] font-normal border border-artsy-cartBorder text-artsy-text-black rounded-lg focus:outline-0 px-4 bg-artsy-searchGrey min-h-[50px] md:min-h-[75px]"
             >
               <option value="Lagos">Lagos</option>
@@ -203,7 +290,7 @@ const Shipping = () => {
               <select
                 name="country"
                 id="country"
-                defaultValue=""
+                {...formik.getFieldProps("country")}
                 className="filter-select cursor-pointer text-[18px] md:text-[26px] font-normal border border-artsy-cartBorder text-artsy-text-black rounded-lg focus:outline-0 px-4 bg-artsy-searchGrey min-h-[50px] md:min-h-[75px]"
               >
                 <option value="Nigeria">Nigeria</option>
@@ -217,13 +304,19 @@ const Shipping = () => {
             >
               Poster Code
               <input
-                type="number"
+                type="text"
                 name="posterCode"
                 id="posterCode"
                 autoComplete="off"
                 placeholder="101001"
                 className="border border-artsy-cartBorder placeholder:text-[16px] md:placeholder:text-[26px] text-artsy-text-black rounded-lg focus:outline-0 px-4 bg-artsy-searchGrey min-h-[50px] md:min-h-[75px]"
+                {...formik.getFieldProps("posterCode")}
               />
+              {formik.touched.posterCode && formik.errors.posterCode ? (
+                <div className="text-artsy-like-red font-medium text-[16px]">
+                  {formik.errors.posterCode}
+                </div>
+              ) : null}
             </label>
           </div>
 
@@ -237,9 +330,15 @@ const Shipping = () => {
               name="phoneNumber"
               id="phoneNumber"
               autoComplete="off"
-              placeholder="08145485635"
+              placeholder="0814-548-5635"
               className="border border-artsy-cartBorder placeholder:text-[16px] md:placeholder:text-[26px] text-artsy-text-black rounded-lg focus:outline-0 px-4 bg-artsy-searchGrey min-h-[50px] md:min-h-[75px]"
+              {...formik.getFieldProps("phoneNumber")}
             />
+            {formik.touched.phoneNumber && formik.errors.phoneNumber ? (
+              <div className="text-artsy-like-red font-medium text-[16px]">
+                {formik.errors.phoneNumber}
+              </div>
+            ) : null}
           </label>
 
           <button
@@ -257,7 +356,7 @@ const Shipping = () => {
           </Link>
         </form>
 
-        <section className="flex-1 hidden lg:flex flex-col gap-4">
+        <section className="flex-1 hidden lg:flex flex-col gap-4 lg:max-h-[110vh] overflow-y-auto">
           {eachItem}
 
           <section className="flex-1 flex flex-col gap-2 w-full max-w-full md:max-w-[600px] order-1 md:order-3 border-t border-artsy-cartBorder py-4">

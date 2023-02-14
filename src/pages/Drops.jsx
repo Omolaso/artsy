@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Footer } from "../components";
 import { drops } from "../Products";
+import Countdown from "react-countdown";
 
 const Drops = () => {
   const [dropItems, setDropItems] = useState(null);
@@ -10,6 +11,16 @@ const Drops = () => {
   useEffect(() => {
     setDropItems(drops);
   }, []);
+
+  //countdown props
+  const renderer = ({ hours, minutes, seconds }) => {
+    return (
+      <span className="text-[22px] lg:text-[40px] font-normal text-artsy-background-white">
+        {hours}hrs : {minutes}min : {seconds}s
+      </span>
+    );
+  };
+
   return (
     <>
       <main className="flex flex-col gap-20 md:my-[15px] my-[10px] px-4 md:px-8">
@@ -75,7 +86,31 @@ const Drops = () => {
                       borderRadius: "8px",
                     }}
                   >
-                    <h1>Time Elapsed</h1>
+                    {item.inProgress === true ? (
+                      <div className="flex flex-col items-start w-full px-5 gap-2">
+                        <h1 className="text-[16px] md:text-[28px] font-normal text-artsy-background-white">
+                          Time remaining
+                        </h1>
+                        <Countdown
+                          date={Date.now() + 12000000}
+                          renderer={renderer}
+                        />
+                      </div>
+                    ) : item.inProgress === "upcoming" ? (
+                      <div className="flex flex-col items-start w-full px-5 gap-2">
+                        <h1 className="text-[28px] font-normal text-artsy-background-white">
+                          Time remaining
+                        </h1>
+                        <Countdown
+                          date={Date.now() + 20000000}
+                          renderer={renderer}
+                        />
+                      </div>
+                    ) : (
+                      <h1 className="text-[16px] md:text-[28px] font-normal text-artsy-background-white">
+                        Auction ended
+                      </h1>
+                    )}
                   </div>
                 </div>
 

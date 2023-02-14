@@ -28,7 +28,7 @@ const SharedLayout = () => {
 
   return (
     <>
-      <main className="relative">
+      <main className="relative select-none">
         <div className="w-full">
           <Navbar sidebarOpen={sidebarOpen} setSidebar={setSidebar} />
         </div>

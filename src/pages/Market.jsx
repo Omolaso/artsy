@@ -630,7 +630,7 @@ const Market = () => {
                       type="button"
                       key={product.id}
                       onClick={() => navigate(`/marketplace/${product.id}`)}
-                      className="flex flex-col items-center flex-1 gap-4 h-[480px] lg:h-[420px] bg-artsy-background-white p-4 w-full rounded-[15px]"
+                      className="flex flex-col items-center flex-1 gap-4 h-[480px] lg:h-[420px] hover:scale-95 duration-300 ease-in-out bg-artsy-background-white p-4 w-full rounded-[15px]"
                       style={{
                         boxShadow: "0px 34px 68px rgba(217, 225, 244, 0.36)",
                       }}
@@ -641,7 +641,13 @@ const Market = () => {
                         className="h-[384px] lg:h-[280px] w-full"
                       />
                       <div className="flex flex-row items-center lg:items-start justify-between w-full lg:flex-col lg:ml-3 lg:mt-3">
-                        <h1 className="text-[16px] lg:text-[22px] font-medium lg:font-normal text-artsy-text-greyBlack">
+                        <h1
+                          className={
+                            product.name.length > 7
+                              ? "text-[16px] lg:text-[18px] font-medium lg:font-normal text-artsy-text-greyBlack"
+                              : "text-[16px] lg:text-[22px] font-medium lg:font-normal text-artsy-text-greyBlack"
+                          }
+                        >
                           {product.name}
                         </h1>
                         <big className="text-[16px] lg:text-[28px] font-normal lg:font-bold">
