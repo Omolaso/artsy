@@ -313,7 +313,7 @@ const Market = () => {
                 name="sort"
                 id="sort"
                 defaultValue="sortAll"
-                onChange={() => handleSort()}
+                onChange={(e) => handleSort(e)}
                 className="h-[60px] border border-artsy-black px-2 w-full max-w-[190px] focus:outline-none font-normal text-[18px] rounded-[8px] cursor-pointer"
               >
                 <option value="sortAll" disabled>
@@ -364,7 +364,7 @@ const Market = () => {
                 id="sort"
                 defaultValue={"sort-all"}
                 className="sort-select h-[60px] px-2 w-full max-w-[90px] focus:outline-none font-normal text-[15px] rounded-[8px] cursor-pointer"
-                onChange={() => handleSort()}
+                onChange={(e) => handleSort(e)}
               >
                 <option value="sort-all" disabled>
                   Sort By
@@ -543,7 +543,7 @@ const Market = () => {
                       <Slider
                         getAriaLabel={() => "Price range"}
                         value={value}
-                        onChange={handleChange}
+                        onChange={() => handleChange()}
                         valueLabelDisplay="on"
                         sx={{ color: "black" }}
                         min={2}
