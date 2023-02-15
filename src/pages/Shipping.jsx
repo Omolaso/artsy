@@ -74,8 +74,7 @@ const Shipping = () => {
       navigate(url.payment);
     },
   });
-
-  //form validation with formik
+  //form validation with formik ends
 
   const eachItem = cartItems.map((item) => (
     <article

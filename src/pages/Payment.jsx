@@ -6,6 +6,8 @@ import { clearCart } from "../reduxSlice/CartSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { wallets } from "../Products";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 const Payment = () => {
   const { cartQuantity, total, cartItems } = useSelector((store) => store.cart);
@@ -15,11 +17,29 @@ const Payment = () => {
 
   const shippingFee = cartItems.length * 2;
 
-  const handleConfirmPayment = (e) => {
-    e.preventDefault();
-    navigate(url.completed);
-    dispatch(clearCart());
-  };
+  //form validation with formik
+  const formik = useFormik({
+    initialValues: {
+      cvv: "",
+    },
+
+    validationSchema: Yup.object({
+      cvv: Yup.number()
+        .required("Required")
+        .integer("Must be a number")
+        .positive("Must be a postive number")
+        .min(100, "Too short")
+        .max(999, "Too long"),
+    }),
+
+    onSubmit: (values) => {
+      window.localStorage.setItem("CVV", values.cvv);
+      window.localStorage.setItem("Save-Wallet-Details", values.checkBox);
+      navigate(url.completed);
+      dispatch(clearCart());
+    },
+  });
+  //form validation with formik ends
 
   const breadCrumb = (
     <section className="flex flex-row items-center justify-start text-[17px] md:text-[24px] font-medium gap-2 min-h-[5vh] md:min-h-[10vh] px-4 md:px-8">
@@ -97,7 +117,7 @@ const Payment = () => {
             </div>
 
             <form
-              onSubmit={(e) => handleConfirmPayment(e)}
+              onSubmit={formik.handleSubmit}
               className="flex flex-col gap-6 md:gap-12 text-[18px] md:text-[26px] font-normal text-artsy-cartTextColor"
             >
               <label
@@ -157,15 +177,19 @@ const Payment = () => {
                 >
                   CVV
                   <input
-                    type="number"
-                    minLength={0}
-                    maxLength={3}
+                    type="text"
                     name="cvv"
                     id="cvv"
                     autoComplete="off"
                     placeholder="***"
                     className="border border-artsy-cartBorder placeholder:text-[16px] md:placeholder:text-[26px] text-artsy-text-black rounded-lg focus:outline-0 px-4 bg-artsy-searchGrey min-h-[50px] md:min-h-[75px]"
+                    {...formik.getFieldProps("cvv")}
                   />
+                  {formik.touched.cvv && formik.errors.cvv ? (
+                    <div className="text-artsy-like-red font-medium text-[16px]">
+                      {formik.errors.cvv}
+                    </div>
+                  ) : null}
                 </label>
               </div>
 
@@ -175,6 +199,7 @@ const Payment = () => {
                   name="checkBox"
                   id="checkBox"
                   className="min-h-[16px] md:min-h-[22px] min-w-[16px] md:min-w-[22px] bg-artsy-searchGrey accent-artsy-text-black"
+                  {...formik.getFieldProps("checkBox")}
                 />
                 <span className="text-artsy-cartBorder font-normal text-[16px] md:text-[20px] mt-5 sm:mt-0">
                   Save my wallet details & information for future transactions
