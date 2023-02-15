@@ -336,7 +336,7 @@ const Market = () => {
                   id="filter"
                   defaultValue={"all"}
                   className="filter-select h-[60px] px-2 w-full max-w-[117px] focus:outline-none font-normal text-[15px] rounded-[8px] cursor-pointer"
-                  onChange={() => handleFilterOnMobile()}
+                  onChange={(e) => handleFilterOnMobile(e)}
                 >
                   <option value="all" disabled>
                     Filter Items
